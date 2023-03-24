@@ -1,11 +1,9 @@
-//
-//  ContentView.swift
-//  GameChallenge
-//
+
 //  Created by Raina Rodrigues de Lima on 24/03/23.
 //
 
 import SwiftUI
+
 
 struct ContentView: View {
     var body: some View {
