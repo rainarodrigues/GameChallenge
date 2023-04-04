@@ -1,1 +1,1 @@
-# GameChallenge
+# game-challenge
