@@ -72,7 +72,8 @@ struct MenuGameView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
                             ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "puzzle1", isLocked: self.isBlocked)
+                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "puzzle1", isLocked: index != 1 )
+
                             }
                         }
                         .padding(.leading, 20)
@@ -134,12 +135,13 @@ struct PuzzleButtonView: View {
                     .frame(width: 150, height: 150)
                     .cornerRadius(25)
                     .overlay(
-                        Image("play")
+                        Image(isLocked ? "lock" : "play")
                             .resizable()
                             .frame(width: 75, height: 75)
                             .opacity(isPressing ? 0 : 1)
                     )
             }
+            .disabled(isLocked)
             .simultaneousGesture(
                 LongPressGesture(minimumDuration: 1)
                     .updating($isPressing) { value, state, transaction in
