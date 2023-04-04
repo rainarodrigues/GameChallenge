@@ -46,7 +46,7 @@ struct MenuViewOptional: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
                             ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "puzzle1", isLocked: self.isBlocked)
+                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "puzzle1", isLocked: index != 1 )
                             }
                         }
                         .padding(.leading, 20)
