@@ -1,17 +1,18 @@
-
-//  Created by Raina Rodrigues de Lima on 24/03/23.
+//
+//  ContentView.swift
+//  GameChallenge
+//
+//  Created by Raina Rodrigues de Lima on 29/03/23.
 //
 
 import SwiftUI
 
-
 struct ContentView: View {
+    
+    private let countDownView = CountDownView()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            countDownView
         }
         .padding()
     }
@@ -22,3 +23,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
