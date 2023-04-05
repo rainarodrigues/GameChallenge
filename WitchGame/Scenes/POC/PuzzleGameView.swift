@@ -11,8 +11,9 @@ import SpriteKit
 struct PuzzleGameView: View {
     var scene: SKScene {
         let scene = GameScene()
-        scene.size = CGSize(width: 300, height: 300)
+        scene.size = CGSize(width: 400, height: 400)
         scene.scaleMode = .fill
+        
         return scene
     }
     

@@ -13,7 +13,7 @@ struct WitchGameApp: App {
         WindowGroup {
 //            PuzzleGameView()
 //            PuzzleSceneView()
-            SplashView()
+            PuzzleSceneView()
 //            MenuViewOptional()
         }
     }
