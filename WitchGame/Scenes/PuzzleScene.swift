@@ -147,7 +147,8 @@ class PuzzleScene: SKScene {
                 let placeholder = SKSpriteNode(color: .gray, size: size)
                 //                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
                 //                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
-                placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
+//                placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
+                placeholder.position = CGPoint(x: -100 + (60 * j), y: 100 - (60*i))
                 addChild(placeholder)
                 placeholders.append(placeholder)
                 correctPositions.append(placeholder)
