@@ -21,9 +21,66 @@ class GameScene: SKScene {
     
     var pieceMoved: SKSpriteNode? = nil
     
+    // MARK: - Button
+//    enum TimerState {
+//        case paused
+//        case running
+//    }
+//
+//    let buttonNode: SKSpriteNode = SKSpriteNode(
+//        color: .brown,
+//        size: CGSize(width: 100, height: 100)
+//    )
+//    var buttonState: TimerState = .paused {
+//        didSet {
+//            switch buttonState {
+//            case .paused:
+//                buttonNode.color = .green
+//            case .running:
+//                label.run(.repeat(.sequence([
+//                    .run{
+//                        self.timeMax -= 1
+//                        self.label.text = "\(self.timeMax)"
+//                    },
+//                    .wait(forDuration: 1)
+//                ]), count: 10))
+//                buttonNode.color = .red
+//            }
+//        }
+//    }
     
+//    // MARK: - ProgressBar
+//    var progressBar: ProgressBar = ProgressBar()
+//    var timerStarted: TimeInterval!
+//
+//    // MARK: - Time 10-9
+//    let label = SKLabelNode(text: "")
+//    var timeMax = 10
+//
+////    override init() {
+////        super.init(size: .zero)
+////        scaleMode = .resizeFill
+////    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
+    // MARK: - Lifecycle da SKScene
     override func didMove(to view: SKView) {
-        // setup the scene here
+        super.didMove(to: view)
+        
+//        setupProgressBar()
+//
+//        self.addChild(buttonNode)
+//        buttonNode.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+//
+//        label.fontSize = 20
+//        label.color = .white
+//        label.position = CGPoint(x: progressBar.position.x, y: progressBar.position.y - 160)
+//        self.addChild(label)
+        
+        
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         initialPositions[1] = CGPoint(x: -0, y: 110)
@@ -39,7 +96,9 @@ class GameScene: SKScene {
         createPuzzlePiece(color: .purple, position: CGPoint(x: 110, y: 110), id: 1)
         createPuzzlePiece(color: .yellow, position: CGPoint(x: 110, y: 50), id: 2)
         createPuzzlePiece(color: .green, position: CGPoint(x: 110, y: -10), id: 3)
+                
     }
+    
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -91,9 +150,6 @@ class GameScene: SKScene {
         }
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        
-    }
     
     func createPuzzlePiece(color: UIColor, position: CGPoint, id: Int) {
         let pieceCreated = SKSpriteNode(color: color, size: CGSize(width: 50, height: 50))
@@ -119,4 +175,27 @@ class GameScene: SKScene {
         }
         return 0
     }
+    
+//    private func setupProgressBar() {
+//        addChild(progressBar)
+//        progressBar.buildProgressBar()
+//        progressBar.position = CGPoint(
+//            x: self.frame.midX * 0.25,
+//            y: self.frame.midY
+//        )
+//    }
+//
+//    override func update(_ currentTime: TimeInterval) {
+//        super.update(currentTime)
+//
+//        if buttonState == .running {
+//            if progressBar.progressHeight > 0 {
+//                progressBar.progressHeight -= 0.001
+//            } else {
+//                progressBar.progressHeight = progressBar.totalHeight
+//            }
+//        }
+//    }
+
+
 }

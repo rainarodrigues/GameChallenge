@@ -11,9 +11,10 @@ import SwiftUI
 struct WitchGameApp: App {
     var body: some Scene {
         WindowGroup {
+            SplashView()
 //            PuzzleGameView()
 //            PuzzleSceneView()
-            SplashView()
+//            PuzzleSceneView()
 //            MenuViewOptional()
         }
     }

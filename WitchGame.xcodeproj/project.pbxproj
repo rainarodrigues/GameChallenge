@@ -31,6 +31,7 @@
 		3582BE6F29D717A200411A4F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582BE6E29D717A200411A4F /* MenuView.swift */; };
 		35CA6DFE29D7DDD30049819E /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA6DFD29D7DDD30049819E /* CharacterView.swift */; };
 		35CA6E0029D87BB50049819E /* PuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA6DFF29D87BB50049819E /* PuzzleView.swift */; };
+		B2C8219629DCB42C0082F433 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8219529DCB42C0082F433 /* ProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		3582BE6E29D717A200411A4F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		35CA6DFD29D7DDD30049819E /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		35CA6DFF29D87BB50049819E /* PuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleView.swift; sourceTree = "<group>"; };
+		B2C8219529DCB42C0082F433 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				3541586329D9CE390049021F /* PuzzleScene.swift */,
 				3541586529D9D3B30049021F /* PuzzleSceneView.swift */,
 				3541586B29D9E4F70049021F /* TimeBar.swift */,
+				B2C8219529DCB42C0082F433 /* ProgressBar.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				35CA6E0029D87BB50049819E /* PuzzleView.swift in Sources */,
 				35592C7D29D92C2700F171B2 /* SplashView.swift in Sources */,
 				35592C8229D9343400F171B2 /* PuzzleModel.swift in Sources */,
+				B2C8219629DCB42C0082F433 /* ProgressBar.swift in Sources */,
 				3541586629D9D3B30049021F /* PuzzleSceneView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
