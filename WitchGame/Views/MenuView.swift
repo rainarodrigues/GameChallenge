@@ -79,10 +79,10 @@ struct MenuButtonView: View {
                     .frame(width: 150, height: 150)
                     .cornerRadius(25)
             }
-            Button(action: {}) {
-                Text("Play")
-                    .frame(maxWidth: .infinity)
-            }
+//            Button(action: {}) {
+//                Text("Play")
+//                    .frame(maxWidth: .infinity)
+//            }
             .buttonStyle(.borderedProminent)
             .foregroundColor(.white)
             .tint(.red)

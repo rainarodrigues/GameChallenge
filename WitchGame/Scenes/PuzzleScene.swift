@@ -123,7 +123,6 @@ class PuzzleScene: SKScene {
     private func setupPieces() {
         let piecePositions = [(80, [1,2,3]), (130, [4,5,6]), (160, [7,8,9])]
         let pieceSize = CGSize(width: 50, height: 50)
-        
         for (x, nums) in piecePositions {
             for num in nums {
                 let piece = SKSpriteNode(imageNamed: "piece\(num)")
@@ -138,6 +137,7 @@ class PuzzleScene: SKScene {
     private func setupPlaceholders() {
         let margin: CGFloat = 50
         let padding: CGFloat = 10
+
         let size = CGSize(width: 50, height: 50)
         //        let startX = (view!.bounds.width - (size.width * 3 + padding * 2 + margin)) / 2 + size.width / 2 + margin
         //        let startY = (view!.bounds.height - (size.height * 3 + padding * 2 + margin)) / 2 + size.height / 2 + margin
@@ -145,9 +145,15 @@ class PuzzleScene: SKScene {
         for i in 0..<3 {
             for j in 0..<3 {
                 let placeholder = SKSpriteNode(color: .gray, size: size)
+//<<<<<<< Updated upstream
                 //                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
                 //                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
                 placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
+//=======
+//                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
+//                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
+//                placeholder.position = CGPoint(x: -60 + (40 * j), y: 75 - (80*i))
+//>>>>>>> Stashed changes
                 addChild(placeholder)
                 placeholders.append(placeholder)
                 correctPositions.append(placeholder)
