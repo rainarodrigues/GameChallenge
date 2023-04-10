@@ -26,23 +26,23 @@ struct PuzzleSceneView: View {
                 )
                 .frame(width: geo.size.width, height: geo.size.height + 20)
                 // .padding(.top, 20)
-                .disabled(!gameStarted) // Disable SpriteView when game is not started
+//                .disabled(!gameStarted) // Disable SpriteView when game is not started
                 VStack {
                     Spacer()
                     
                     // MARK: - Botão de Start
-                    HStack {
-                        Spacer()
-                        Button("Start") {
-                            gameStarted = true
-                        }
-                        .frame(width: 100, height: 50)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding()
-                        Spacer()
-                    }
+//                    HStack {
+//                        Spacer()
+//                        Button("Start") {
+//                            gameStarted = true
+//                        }
+//                        .frame(width: 100, height: 50)
+//                        .background(Color.blue)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(10)
+//                        .padding()
+//                        Spacer()
+//                    }
                     Spacer()
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
