@@ -145,15 +145,14 @@ class PuzzleScene: SKScene {
         for i in 0..<3 {
             for j in 0..<3 {
                 let placeholder = SKSpriteNode(color: .gray, size: size)
-//<<<<<<< Updated upstream
-                //                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
-                //                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
-                placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
-//=======
+
 //                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
 //                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
+//                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
+//                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
+                placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
 //                placeholder.position = CGPoint(x: -60 + (40 * j), y: 75 - (80*i))
-//>>>>>>> Stashed changes
+
                 addChild(placeholder)
                 placeholders.append(placeholder)
                 correctPositions.append(placeholder)
