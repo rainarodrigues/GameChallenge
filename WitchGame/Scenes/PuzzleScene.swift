@@ -21,9 +21,9 @@ class PuzzleScene: SKScene {
         case running
     }
     
-    let buttonNode: SKSpriteNode = SKSpriteNode(
+    let buttonbreak: SKSpriteNode = SKSpriteNode(
         color: .brown,
-        size: CGSize(width: 100, height: 100)
+        size: CGSize(width: 50, height: 50)
 //        size: CGSize(self.frame.minX, self.frame.minY)
     )
     
@@ -42,7 +42,7 @@ class PuzzleScene: SKScene {
         didSet {
             switch timeState {
             case .paused:
-                buttonNode.color = .green
+                buttonbreak.color = .green
                 label.removeAction(forKey: "progressBarAction")
             case .running:
                 label.run(.repeat(
@@ -60,7 +60,7 @@ class PuzzleScene: SKScene {
                     ]),
                     count: 10
                 ), withKey: "progressBarAction")
-                buttonNode.color = .red
+                buttonbreak.color = .red
             }
         }
     }
@@ -90,20 +90,8 @@ class PuzzleScene: SKScene {
         //        timerBar.start()
         
         setupProgressBar()
-        
-        self.addChild(buttonNode)
-        buttonNode.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        
-        label.fontSize = 40
-        label.fontName = "Helvetica"
-        label.color = .green
-//        label.position = CGPoint(x: progressBar.position.x * 10, y: progressBar.position.y )
-        label.position = CGPoint(
-            x: self.frame.minX * 0.9,
-            y: self.frame.minY * 0.8
-        )
-        self.addChild(label)
-        
+        setupButtonBreak()
+        setupTimeProgressBar()
         
         setupScene()
         setupPlaceholders()
@@ -175,7 +163,7 @@ class PuzzleScene: SKScene {
 //        let location = touch.location(in: self)
         print(location)
         // Checa se clicou no button node
-        if buttonNode.frame.contains(location) {
+        if buttonbreak.frame.contains(location) {
             timeState = (timeState == .paused) ? .running : .paused
         }
         
@@ -252,5 +240,19 @@ class PuzzleScene: SKScene {
             x: self.frame.minX * 0.9,
             y: self.frame.minY * 0.1
         )
+    }
+    
+    func setupButtonBreak(){
+        self.addChild(buttonbreak)
+        buttonbreak.position = CGPoint(x: progressBar.position.x + 90, y: progressBar.position.y + 180)
+    }
+    
+    func setupTimeProgressBar(){
+    label.fontSize = 40
+    label.fontName = "Helvetica"
+    label.position = CGPoint(
+        x: self.frame.minX * 0.9,
+        y: self.frame.minY * 0.8)
+    self.addChild(label)
     }
 }
