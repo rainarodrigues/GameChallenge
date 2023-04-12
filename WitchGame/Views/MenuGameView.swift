@@ -30,9 +30,9 @@ struct MenuGameView: View {
                 VStack() {
                     CustomNavBar(left: {
                         NavigationLink(destination: CharacterView()) {
-                            Image("witch")
+                            Image("WitchHead 1")
                                 .resizable()
-                                .frame(width: 70, height: 70)
+                                .frame(width: 90, height: 90)
                                 .padding(.leading, 15)
                         }
                     }, center: {
@@ -72,7 +72,7 @@ struct MenuGameView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
                             ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "puzzle1", isLocked: index != 1 )
+                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "Constellation1Puzzle", isLocked: index != 1 )
 
                             }
                         }
@@ -135,7 +135,7 @@ struct PuzzleButtonView: View {
                     .frame(width: 150, height: 150)
                     .cornerRadius(25)
                     .overlay(
-                        Image(isLocked ? "lock" : "play")
+                        Image(isLocked ? "lock" : "star")
                             .resizable()
                             .frame(width: 75, height: 75)
                             .opacity(isPressing ? 0 : 1)
