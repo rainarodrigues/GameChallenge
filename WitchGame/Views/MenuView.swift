@@ -14,7 +14,7 @@ struct MenuView: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: 50) {
                         CharacterButtonView()
-                        MenuButtonView(title: "Puzzle 01", imageName: "puzzle1")
+                        MenuButtonView(title: "Puzzle 01", imageName: "Constellation1Puzzle")
                         MenuButtonView(title: "Puzzle 02", imageName: "puzzle1")
                         MenuButtonView(title: "Puzzle 03", imageName: "puzzle1")
                         MenuButtonView(title: "Puzzle 04", imageName: "puzzle1")

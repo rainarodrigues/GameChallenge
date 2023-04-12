@@ -121,12 +121,12 @@ class PuzzleScene: SKScene {
     }
     
     private func setupPieces() {
-        let piecePositions = [(80, [1,2,3]), (130, [4,5,6]), (160, [7,8,9])]
+        let piecePositions = [(80, [0,1,2]), (130, [3,4,5]), (160, [6,7,8])]
         let pieceSize = CGSize(width: 50, height: 50)
         
         for (x, nums) in piecePositions {
             for num in nums {
-                let piece = SKSpriteNode(imageNamed: "piece\(num)")
+                let piece = SKSpriteNode(imageNamed: "Constellation1-\(num)") //constelation1-\(num)
                 piece.size = pieceSize
                 piece.position = CGPoint(x: x, y: 130 - (60 * (num % 3)))
                 addChild(piece)
