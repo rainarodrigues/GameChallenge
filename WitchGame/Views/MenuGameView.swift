@@ -30,16 +30,25 @@ struct MenuGameView: View {
                 VStack() {
                     CustomNavBar(left: {
                         NavigationLink(destination: CharacterView()) {
-                            Image("WitchHead 1")
-                                .resizable()
-                                .frame(width: 90, height: 90)
-                                .padding(.leading, 15)
+                            VStack {
+                                Image("WitchHead 1")
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+//                                    .border(Color.red)
+                                    .padding(.leading, 15)
+                                Text("Minha evolução")
+                                    .font(.custom("SF Pro Rounded", size: 11))
+                                    .foregroundColor(.white)
+                                    .fontWeight(.regular)
+                                    .padding(.top, -5)
+                                    .padding(.leading, 15)
+                            }
                         }
                     }, center: {
-                        Image("logo1")
+                        Image("AppTitleProvisory2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 353, height: 106)
+                            .frame(width: 300, height: 106)
                     }, right: {
                         Button(action: {
                             if self.isPlaying {
@@ -51,11 +60,18 @@ struct MenuGameView: View {
                             }
                             userDefaults.set(isPlaying, forKey: isPlayingKey)
                         }, label: {
-                            Image(systemName: self.isPlaying ? "speaker.fill" : "speaker.slash.fill")
-                                .foregroundColor(.white)
-                                .opacity(0.8)
-                                .font(.system(size: 50))
-                                .padding(.bottom, 10)
+                            VStack {
+                                Image(systemName: self.isPlaying ? "speaker.fill" : "speaker.slash.fill")
+                                    .foregroundColor(.white)
+                                    .opacity(0.8)
+                                    .font(.system(size: 50))
+                                    .padding(.bottom, 10)
+                                Text(self.isPlaying ? "Áudio On" : "Áudio Off")
+                                    .font(.custom("SF Pro Rounded", size: 11))
+                                    .foregroundColor(.white)
+                                    .fontWeight(.regular)
+                                    .padding(.top, -10)
+                            }
                         })
                         .buttonStyle(.plain)
                         .onAppear(perform: {
@@ -72,7 +88,8 @@ struct MenuGameView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
                             ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Puzzle 0\(index)", imageName: "Constellation1Puzzle", isLocked: index != 1 )
+                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1 )
+                                    .font(.custom("SF Pro Rounded", size: 20))
 
                             }
                         }
@@ -149,9 +166,15 @@ struct PuzzleButtonView: View {
                     }
             )
             .buttonStyle(.plain)
-            Button(action: {}) {
-                Text("Details")
-                    .frame(maxWidth: .infinity)
+            Button(action: {
+                // code
+            }) {
+
+                HStack {
+                    Image(systemName: "wand.and.rays.inverse")
+                    Text("Saiba mais")
+                    .font(.custom("SF Pro Rounded", size: 17))
+                }.frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
             .foregroundColor(.white)
