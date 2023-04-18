@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D48A4C929EB3020008AADE4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48A4C829EB3020008AADE4 /* OnboardingView.swift */; };
 		3541586429D9CE390049021F /* PuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541586329D9CE390049021F /* PuzzleScene.swift */; };
 		3541586629D9D3B30049021F /* PuzzleSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541586529D9D3B30049021F /* PuzzleSceneView.swift */; };
 		3541586829D9E3460049021F /* clickselect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3541586729D9E3460049021F /* clickselect.mp3 */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D48A4C829EB3020008AADE4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3541586329D9CE390049021F /* PuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleScene.swift; sourceTree = "<group>"; };
 		3541586529D9D3B30049021F /* PuzzleSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleSceneView.swift; sourceTree = "<group>"; };
 		3541586729D9E3460049021F /* clickselect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickselect.mp3; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				3582BE6129D7161800411A4F /* MenuGameView.swift */,
 				35592C7C29D92C2700F171B2 /* SplashView.swift */,
 				3541587029DA192C0049021F /* MenuViewOptional.swift */,
+				1D48A4C829EB3020008AADE4 /* OnboardingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				35CA6E0029D87BB50049819E /* PuzzleView.swift in Sources */,
 				35592C7D29D92C2700F171B2 /* SplashView.swift in Sources */,
 				35592C8229D9343400F171B2 /* PuzzleModel.swift in Sources */,
+				1D48A4C929EB3020008AADE4 /* OnboardingView.swift in Sources */,
 				B2C8219629DCB42C0082F433 /* ProgressBar.swift in Sources */,
 				3541586629D9D3B30049021F /* PuzzleSceneView.swift in Sources */,
 			);
