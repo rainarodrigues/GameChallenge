@@ -20,8 +20,69 @@ struct MenuGameView: View {
     let userDefaults = UserDefaults.standard
     let isPlayingKey = "isPlayingKey"
     let isBlockedKey = "isBlockedKey"
-    
-    
+
+    let constallationDetailsModel: [ConstellationDetailsModel] = [
+        ConstellationDetailsModel(
+            id: 1,
+            constellationName: "A Ema",
+            constellationImage: "Constellation1Reveal",
+            animalImage: "Constellation1Puzzle",
+            constellationDetails: "Nesta constelação é representada uma Ema muito poderosa, capaz de devorar estrelas inteiras. As estrelas alfa e beta da constelação ocidental da Mosca representam o bico da Ema, que está tentando comer dois ovos. Já as estrelas alfa e beta da constelação de Centauro representam ovos que ela já engoliu, e aparecem no pescoço da Ema. O Cruzeiro do Sul está localizado logo acima da cabeça da ave, e representa uma forquilha que segura sua cabeça e a impede de beber todas as águas do mundo. As manchas da Via Láctea representam a belíssima plumagem da Ema.",
+            position: "Limitada pelas constelações de Escorpião, por um lado, e o Cruzeiro do Sul, por outro.",
+            season: "Surge no inverno, na segunda quinzena de junho, do lado leste do céu.",
+            trivia: "Quando Claude D'Abbeville entrevistou os Tupinambá no Maranhão em 1612, ele batizou a constelação de Avestruz Americana. Mas já que não havia avestruz no Brasil, ela passou a ser chamada de Ema.",
+            record: 1
+        ),
+        ConstellationDetailsModel(
+            id: 2,
+            constellationName: "A Anta",
+            constellationImage: "Constellation2Reveal",
+            animalImage: "Constellation1Puzzle",
+            constellationDetails: "Esta constelação representa mais um animal típico do Brasil: uma Anta. Ela caminha pela Via Láctea que, por sua vez, é considerada o Caminho das Antas. Ela é mais conhecida entre os indígenas que habitam o norte do Brasil, uma vez que na região sul a Anta do Norte aparece muito próxima da linha do horizonte, o que dificulta sua visão. Assim, os povos do sul utilizam a constelação do Colibri para indicar a chegada da primavera",
+            position: "Limitada pelas constelações ocidentais de Cisne e da Cassiopéia.",
+            season: "Aparece na primavera, na segunda quinzena de setembro, no lado leste do céu.",
+            trivia: "Para os índios do norte do Brasil, indica uma estação de transição entre a seca e a chuva. Já para os índios do sul, indica uma estação de transição entre o frio e o calor.",
+            record: 1
+        ),
+        ConstellationDetailsModel(
+            id: 3,
+            constellationName: "O Cervo",
+            constellationImage: "Constellation3Reveal",
+            animalImage: "Constellation1Puzzle",
+            constellationDetails: "A constelação do Cervo ou Veado é conhecida principalmente pelas etnias de índios brasileiros que habitam na região sul do país, já que, para as etnias da região norte, ela fica muito próxima da linha do horizonte. Como ela está localizada inteiramente dentro da Via Láctea, o caminho das Antas, também é conhecida como Anta do Norte (há outras constelações com o nome Anta na astronomia Tupi-Guarani.",
+            position: "Limitada pelas constelações ocidentais Vela e Cruzeiro do Sul.",
+            season: "Surge no outono, na segunda quinzena de março, no lado leste do céu.",
+            trivia: "O Cervo indica uma estação de transição entre o calor e o frio para os índios do sul do Brasil. Já para os índios do norte do Brasil, indica a transição entre a chuva e a seca.",
+            record: 1
+        ),
+        ConstellationDetailsModel(
+            id: 4,
+            constellationName: "O Homem Velho",
+            constellationImage: "Constellation4Reveal",
+            animalImage: "Constellation1Puzzle",
+            constellationDetails: "Representa um homem cuja esposa estava interessada no seu irmão. Para ficar com o cunhado, a esposa matou o marido, cortando-lhe a perna. Os deuses ficaram com pena do marido e o transformaram em constelação.",
+            position: "Limitada pelas constelações ocidentais de Touro e Órion.",
+            season: "Aparece no Verão. Surge na segunda quinzena de dezembro, no lado leste.",
+            trivia: "Indica o início do verão para os índios do sul do Brasil e o início da estação chuvosa para os índios do norte do Brasil. É composta por outras constelações indígenas: Eixu (as Pleiades), Tapi'i rainhyakã (as Hyades, incluindo Aldebaran) e Joykexo (O Cinturão de Orion).",
+            record: 1
+        )
+    ]
+
+    func constellationDetailsViewButton(model: ConstellationDetailsModel) -> some View {
+        NavigationLink(destination: ConstellationDetailsView(constellationName: model.constellationName)) {
+            HStack {
+                Image(systemName: "info.bubble.fill")
+                    .font(.system(size: 16))
+                Text("Detalhes")
+                    .font(.custom("SF Pro Rounded", size: 16))
+                    .fontWeight(.semibold)
+            }.frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.bordered)
+        .foregroundColor(.white)
+        .tint(.purple)
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -88,8 +149,9 @@ struct MenuGameView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
                             ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1 )
-                                    .font(.custom("SF Pro Rounded", size: 20))
+                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1, constelationName: "Fase \(index)")
+                                    .font(.custom("SF Pro Rounded", size: 21))
+
 
                             }
                         }
@@ -137,8 +199,11 @@ struct PuzzleButtonView: View {
     let title: String
     let imageName: String
     let isLocked: Bool
+
+    let constelationName: String // c 1
+
     @GestureState private var isPressing = false
-    
+
     var body: some View {
         VStack(spacing: 10) {
             Text(title)
@@ -166,14 +231,14 @@ struct PuzzleButtonView: View {
                     }
             )
             .buttonStyle(.plain)
-            Button(action: {
-                // code
-            }) {
 
+            NavigationLink(destination: ConstellationDetailsView(constellationName: constelationName)) {
                 HStack {
-                    Image(systemName: "wand.and.rays.inverse")
-                    Text("Saiba mais")
-                    .font(.custom("SF Pro Rounded", size: 17))
+                    Image(systemName: "info.bubble.fill")
+                        .font(.system(size: 16))
+                    Text("Detalhes")
+                        .font(.custom("SF Pro Rounded", size: 16))
+                        .fontWeight(.semibold)
                 }.frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
