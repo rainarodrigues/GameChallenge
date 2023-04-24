@@ -26,11 +26,12 @@
 		35592C8929D9395A00F171B2 /* PuzzleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35592C8829D9395A00F171B2 /* PuzzleGameView.swift */; };
 		3582BE6029D7161800411A4F /* WitchGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582BE5F29D7161800411A4F /* WitchGameApp.swift */; };
 		3582BE6229D7161800411A4F /* MenuGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582BE6129D7161800411A4F /* MenuGameView.swift */; };
-		3582BE6429D7161A00411A4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3582BE6329D7161A00411A4F /* Assets.xcassets */; };
 		3582BE6729D7161A00411A4F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3582BE6629D7161A00411A4F /* Preview Assets.xcassets */; };
 		3582BE6F29D717A200411A4F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582BE6E29D717A200411A4F /* MenuView.swift */; };
 		35CA6DFE29D7DDD30049819E /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA6DFD29D7DDD30049819E /* CharacterView.swift */; };
 		35CA6E0029D87BB50049819E /* PuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA6DFF29D87BB50049819E /* PuzzleView.swift */; };
+		B29BCEBE29E593340073547D /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29BCEBD29E593340073547D /* PauseButton.swift */; };
+		B29BCEDC29E6F7BE0073547D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B29BCEDB29E6F7BE0073547D /* Assets.xcassets */; };
 		B2C8219629DCB42C0082F433 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8219529DCB42C0082F433 /* ProgressBar.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,11 +55,12 @@
 		3582BE5C29D7161800411A4F /* WitchGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WitchGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3582BE5F29D7161800411A4F /* WitchGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitchGameApp.swift; sourceTree = "<group>"; };
 		3582BE6129D7161800411A4F /* MenuGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuGameView.swift; sourceTree = "<group>"; };
-		3582BE6329D7161A00411A4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3582BE6629D7161A00411A4F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3582BE6E29D717A200411A4F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		35CA6DFD29D7DDD30049819E /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		35CA6DFF29D87BB50049819E /* PuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleView.swift; sourceTree = "<group>"; };
+		B29BCEBD29E593340073547D /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
+		B29BCEDB29E6F7BE0073547D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2C8219529DCB42C0082F433 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 				3541586529D9D3B30049021F /* PuzzleSceneView.swift */,
 				3541586B29D9E4F70049021F /* TimeBar.swift */,
 				B2C8219529DCB42C0082F433 /* ProgressBar.swift */,
+				B29BCEBD29E593340073547D /* PauseButton.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -137,12 +140,12 @@
 		3582BE5E29D7161800411A4F /* WitchGame */ = {
 			isa = PBXGroup;
 			children = (
+				B29BCEDB29E6F7BE0073547D /* Assets.xcassets */,
 				35592C8329D937F000F171B2 /* Scenes */,
 				35592C8029D9341B00F171B2 /* Models */,
 				35592C6E29D8A17100F171B2 /* Helpers */,
 				3582BE6D29D7179100411A4F /* Views */,
 				3582BE5F29D7161800411A4F /* WitchGameApp.swift */,
-				3582BE6329D7161A00411A4F /* Assets.xcassets */,
 				3582BE6529D7161A00411A4F /* Preview Content */,
 			);
 			path = WitchGame;
@@ -239,8 +242,8 @@
 				3582BE6729D7161A00411A4F /* Preview Assets.xcassets in Resources */,
 				35592C7929D91FC800F171B2 /* stars-crop.json in Resources */,
 				3541586829D9E3460049021F /* clickselect.mp3 in Resources */,
-				3582BE6429D7161A00411A4F /* Assets.xcassets in Resources */,
 				35592C7229D8A4EE00F171B2 /* music.mp3 in Resources */,
+				B29BCEDC29E6F7BE0073547D /* Assets.xcassets in Resources */,
 				35592C7429D91A5A00F171B2 /* stars.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +261,7 @@
 				35592C7029D8A17F00F171B2 /* PlaySound.swift in Sources */,
 				3541586C29D9E4F70049021F /* TimeBar.swift in Sources */,
 				3541587129DA192C0049021F /* MenuViewOptional.swift in Sources */,
+				B29BCEBE29E593340073547D /* PauseButton.swift in Sources */,
 				3582BE6F29D717A200411A4F /* MenuView.swift in Sources */,
 				35CA6DFE29D7DDD30049819E /* CharacterView.swift in Sources */,
 				3541586429D9CE390049021F /* PuzzleScene.swift in Sources */,

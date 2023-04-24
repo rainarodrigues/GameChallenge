@@ -2,8 +2,16 @@ import SpriteKit
 
 class PuzzleScene: SKScene {
     
-    // MARK: - Properties
+    override init(size: CGSize) {
+        super.init(size: size)
+        scaleMode = .resizeFill
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Properties
     var pieces: [SKSpriteNode] = []
     var placeholders: [SKSpriteNode] = []
     var pieceMoved: SKSpriteNode?
@@ -15,17 +23,13 @@ class PuzzleScene: SKScene {
     
     var scrollView: UIScrollView!
     
-    // MARK: - Button
-    enum TimerState {
-        case paused
-        case running
-    }
-    
-    let buttonbreak: SKSpriteNode = SKSpriteNode(
-        color: .brown,
-        size: CGSize(width: 50, height: 50)
-//        size: CGSize(self.frame.minX, self.frame.minY)
-    )
+    var buttonPause: PauseButton!
+//    let buttonPause: SKSpriteNode = SKSpriteNode(
+//        color: .brown,
+//        size: CGSize(width: 50, height: 50)
+//    )
+    //    let buttonPause = PauseButton(imageNamed: "icon-pause")
+    //    let buttonPause = PauseButton(imageNamed: "icon-play")
     
     var gameStarted: Bool = false
     
@@ -38,59 +42,14 @@ class PuzzleScene: SKScene {
     let timeMax: CGFloat = 10.0
     lazy var timeNow = self.timeMax
     
-    var timeState: TimerState = .paused {
-        didSet {
-            switch timeState {
-            case .paused:
-                buttonbreak.color = .green
-                label.removeAction(forKey: "progressBarAction")
-            case .running:
-                label.run(.repeat(
-                    .sequence([
-                        .run {
-                            if self.timeNow <= 0 {
-                                self.timeState = .paused
-                            } else {
-                                self.timeNow -= 1
-                                self.label.text = "\(Int(self.timeNow))"
-                                self.progressBar.progressHeight -= (self.progressBar.totalHeight/self.timeMax)
-                            }
-                        },
-                        .wait(forDuration: 1)
-                    ]),
-                    count: 10
-                ), withKey: "progressBarAction")
-                buttonbreak.color = .red
-            }
-        }
-    }
-    
-    override init(size: CGSize) {
-        super.init(size: size)
-        scaleMode = .resizeFill
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - View Lifecycle
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        
         self.alpha = 0.5
-        
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        //        let timerBar = TimerBar(size: CGSize(width: 10, height: 150), color: .red)
-        //        addChild(timerBar)
-        //        timerBar.updateProgress(0.3)
-        
-        //        let timerBar = TimerBar(size: CGSize(width: 20, height: 100), color: .green, duration: 60)
-        //        addChild(timerBar)
-        //        timerBar.start()
         
         setupProgressBar()
-        setupButtonBreak()
+        setupButtonPause()
         setupTimeProgressBar()
         
         setupScene()
@@ -100,12 +59,7 @@ class PuzzleScene: SKScene {
     
     // MARK: - Setup Methods
     private func setupScene() {
-        //        let background = SKSpriteNode(imageNamed: "puzzle-background")
-        //        background.anchorPoint = .zero
-        //        addChild(background)
-        
         backgroundColor = .black
-        
     }
     
     private func setupPieces() {
@@ -133,8 +87,8 @@ class PuzzleScene: SKScene {
         for i in 0..<3 {
             for j in 0..<3 {
                 let placeholder = SKSpriteNode(color: .gray, size: size)
-                //                            placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
-                //                                                            y: startY - CGFloat(i / 3) * (size.height + padding))
+                // placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
+                // y: startY - CGFloat(i / 3) * (size.height + padding))
                 placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
                 addChild(placeholder)
                 placeholders.append(placeholder)
@@ -144,7 +98,6 @@ class PuzzleScene: SKScene {
     }
     
     // MARK: - Touch Handling
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         var location = touches.first!.location(in: self)
         let node = nodes(at: location).first
@@ -155,24 +108,18 @@ class PuzzleScene: SKScene {
             pieceMoved!.zPosition = 1
             playSelectPiece(filename: "clickselect", fileExtension: "mp3")
             
-            }
+        }
         
         // MARK: toque para iniciar o a barra de progresso
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
-//        let location = touch.location(in: self)
         print(location)
-        // Checa se clicou no button node
-        if buttonbreak.frame.contains(location) {
-            timeState = (timeState == .paused) ? .running : .paused
-        }
         
         if !gameStarted {
             self.alpha = 1
             gameStarted = true
-            timeState = .running
+            buttonPause.timeState = .running
         }
-        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -225,9 +172,9 @@ class PuzzleScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         
-        if timeState == .running {
+        if buttonPause.timeState == .running {
             if progressBar.progressHeight <= 0 {
-                timeState = .paused
+                buttonPause.timeState = .paused
                 print("Cabou o tempo :(")
             }
         }
@@ -242,17 +189,85 @@ class PuzzleScene: SKScene {
         )
     }
     
-    func setupButtonBreak(){
-        self.addChild(buttonbreak)
-        buttonbreak.position = CGPoint(x: progressBar.position.x + 90, y: progressBar.position.y + 180)
+    func setupTimeProgressBar(){
+        label.fontSize = 40
+        label.fontName = "Helvetica"
+        label.position = CGPoint(
+            x: self.frame.minX * 0.9,
+            y: self.frame.minY * 0.8)
+        self.addChild(label)
     }
     
-    func setupTimeProgressBar(){
-    label.fontSize = 40
-    label.fontName = "Helvetica"
-    label.position = CGPoint(
-        x: self.frame.minX * 0.9,
-        y: self.frame.minY * 0.8)
-    self.addChild(label)
+    func setupButtonPause(){
+//        self.addChild(buttonPause)
+//        buttonPause.position = CGPoint(x: progressBar.position.x + 90, y: progressBar.position.y + 180)
+        buttonPause = PauseButton(imageNamed: "icon-pause")
+        buttonPause.position = CGPoint(x: frame.midX, y: frame.midY)
+        buttonPause.position = CGPoint(x: progressBar.position.x + 50, y: progressBar.position.y + 180)
+        buttonPause.action = { [weak self] timeState in
+            guard let self else { return }
+
+            // Aqui deve chamar o método para pausar o jogo
+            switch timeState {
+            case .paused:
+                self.buttonPause.color = .green // TODO: trocar imagem (texture)
+                //troca imagem para play
+                self.label.removeAction(forKey: "progressBarAction")
+            case .running:
+                self.label.run(.repeat(
+                    .sequence([
+                        .run {
+                            if self.timeNow <= 0 {
+                                self.buttonPause.timeState = .paused
+                            } else {
+                                self.timeNow -= 1
+                                self.label.text = "\(Int(self.timeNow))"
+                                self.progressBar.progressHeight -= (self.progressBar.totalHeight/self.timeMax)
+                            }
+                        },
+                        .wait(forDuration: 1)
+                    ]),
+                    count: 10
+                ), withKey: "progressBarAction")
+                self.buttonPause.color = .red // TODO: trocar imagem (texture)
+                //troca imagem para pausado
+            }
+            
+        }
+        addChild(buttonPause)
     }
+    
+    override func didChangeSize(_ oldSize: CGSize) {
+        super.didChangeSize(oldSize)
+        
+//        let buttonPause = PauseButton(imageNamed: "icon-pause")
+//        buttonPause.position = CGPoint(x: frame.midX, y: frame.midY)
+//        buttonPause.position = CGPoint(x: progressBar.position.x + 50, y: progressBar.position.y + 180)
+//        buttonPause.action = {
+//            // Aqui deve chamar o método para pausar o jogo
+//        }
+//        addChild(buttonPause)
+        //        buttonPause.position = CGPoint(x: progressBar.position.x + 90, y: progressBar.position.y + 180)
+    }
+    
+    
+    
 }
+
+// TODO: Estudar
+//class A {
+//
+//    let global: String = "global"
+//
+//    func a() {
+//
+//        let local = "local"
+//
+//        var action: () -> Void = { // Reference Types x Value Types - ARC
+//            self.global
+//        }
+//
+//        print(global)
+//    }
+//
+//}
