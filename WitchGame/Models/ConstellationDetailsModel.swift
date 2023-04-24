@@ -17,4 +17,5 @@ struct ConstellationDetailsModel {
     let season: String
     let trivia: String
     let record: Int
+    var isBlocked: Bool
 }

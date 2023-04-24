@@ -21,7 +21,11 @@ struct MenuGameView: View {
     let isPlayingKey = "isPlayingKey"
     let isBlockedKey = "isBlockedKey"
 
-    let constallationDetailsModel: [ConstellationDetailsModel] = [
+    let isLocked: Bool
+    let isLocked2: [Bool] = [false, true, true, true]
+    @GestureState private var isPressing = false
+
+    @State var constellationDetailsModel: [ConstellationDetailsModel] = [
         ConstellationDetailsModel(
             id: 1,
             constellationName: "A Ema",
@@ -31,7 +35,8 @@ struct MenuGameView: View {
             position: "Limitada pelas constelações de Escorpião, por um lado, e o Cruzeiro do Sul, por outro.",
             season: "Surge no inverno, na segunda quinzena de junho, do lado leste do céu.",
             trivia: "Quando Claude D'Abbeville entrevistou os Tupinambá no Maranhão em 1612, ele batizou a constelação de Avestruz Americana. Mas já que não havia avestruz no Brasil, ela passou a ser chamada de Ema.",
-            record: 1
+            record: 1,
+            isBlocked: false
         ),
         ConstellationDetailsModel(
             id: 2,
@@ -42,7 +47,8 @@ struct MenuGameView: View {
             position: "Limitada pelas constelações ocidentais de Cisne e da Cassiopéia.",
             season: "Aparece na primavera, na segunda quinzena de setembro, no lado leste do céu.",
             trivia: "Para os índios do norte do Brasil, indica uma estação de transição entre a seca e a chuva. Já para os índios do sul, indica uma estação de transição entre o frio e o calor.",
-            record: 1
+            record: 1,
+            isBlocked: true
         ),
         ConstellationDetailsModel(
             id: 3,
@@ -53,7 +59,8 @@ struct MenuGameView: View {
             position: "Limitada pelas constelações ocidentais Vela e Cruzeiro do Sul.",
             season: "Surge no outono, na segunda quinzena de março, no lado leste do céu.",
             trivia: "O Cervo indica uma estação de transição entre o calor e o frio para os índios do sul do Brasil. Já para os índios do norte do Brasil, indica a transição entre a chuva e a seca.",
-            record: 1
+            record: 1,
+            isBlocked: true
         ),
         ConstellationDetailsModel(
             id: 4,
@@ -64,7 +71,8 @@ struct MenuGameView: View {
             position: "Limitada pelas constelações ocidentais de Touro e Órion.",
             season: "Aparece no Verão. Surge na segunda quinzena de dezembro, no lado leste.",
             trivia: "Indica o início do verão para os índios do sul do Brasil e o início da estação chuvosa para os índios do norte do Brasil. É composta por outras constelações indígenas: Eixu (as Pleiades), Tapi'i rainhyakã (as Hyades, incluindo Aldebaran) e Joykexo (O Cinturão de Orion).",
-            record: 1
+            record: 1,
+            isBlocked: true
         )
     ]
 
@@ -83,6 +91,36 @@ struct MenuGameView: View {
         .tint(.purple)
     }
 
+    func puzzleViewButton(model: ConstellationDetailsModel) -> some View {
+        NavigationLink(destination: PuzzleView()) {
+            VStack(spacing: 5) {
+                Text("\(model.id). \(model.constellationName)")
+                    .font(.custom("SF Pro Rounded", size: 17))
+                    .foregroundColor(.white)
+                Image(model.constellationImage)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 150)
+                    .cornerRadius(25)
+                    .overlay(Image(model.isBlocked ? "lock" : "start")
+                        .resizable()
+                        .frame(width: 75, height: 75)
+                        .opacity(isPressing ? 0 : 1)
+                    )
+            }.frame(maxWidth: .infinity)
+        }
+        .disabled(model.isBlocked)
+//        .simultaneousGesture(
+//            LongPressGesture(minimumDuration: 1)
+//                .updating($isPressing) { value, state, transaction in
+//                    state = value
+//                }
+//        )
+        .buttonStyle(.plain)
+        
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -97,7 +135,7 @@ struct MenuGameView: View {
                                     .frame(width: 80, height: 80)
 //                                    .border(Color.red)
                                     .padding(.leading, 15)
-                                Text("Minha evolução")
+                                Text("Mais sobre mim")
                                     .font(.custom("SF Pro Rounded", size: 11))
                                     .foregroundColor(.white)
                                     .fontWeight(.regular)
@@ -148,12 +186,16 @@ struct MenuGameView: View {
                     .padding(.top, 10)
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
-                            ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1, constelationName: "Fase \(index)")
-                                    .font(.custom("SF Pro Rounded", size: 21))
-
-
+                            ForEach(constellationDetailsModel, id: \.id) { model in
+                                VStack{
+                                    puzzleViewButton(model: model)
+                                    constellationDetailsViewButton(model: model)
+                                }
                             }
+//                            ForEach(1...4, id: \.self) { index in
+//                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1, constelationName: "Fase \(index)")
+//                                    .font(.custom("SF Pro Rounded", size: 21))
+
                         }
                         .padding(.leading, 20)
                     }
@@ -165,7 +207,7 @@ struct MenuGameView: View {
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
-            MenuGameView()
+            MenuGameView(isLocked: true)
                 .previewInterfaceOrientation(.landscapeRight)
         }
     }
@@ -195,58 +237,58 @@ struct CustomNavBar<Left, Center, Right>: View where Left: View, Center: View, R
     }
 }
 
-struct PuzzleButtonView: View {
-    let title: String
-    let imageName: String
-    let isLocked: Bool
-
-    let constelationName: String // c 1
-
-    @GestureState private var isPressing = false
-
-    var body: some View {
-        VStack(spacing: 10) {
-            Text(title)
-                .foregroundColor(.white)
-            
-            NavigationLink(destination: PuzzleSceneView()) {
-                Image(imageName)
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150, height: 150)
-                    .cornerRadius(25)
-                    .overlay(
-                        Image(isLocked ? "lock" : "star")
-                            .resizable()
-                            .frame(width: 75, height: 75)
-                            .opacity(isPressing ? 0 : 1)
-                    )
-            }
-            .disabled(isLocked)
-            .simultaneousGesture(
-                LongPressGesture(minimumDuration: 1)
-                    .updating($isPressing) { value, state, transaction in
-                        state = value
-                    }
-            )
-            .buttonStyle(.plain)
-
-            NavigationLink(destination: ConstellationDetailsView(constellationName: constelationName)) {
-                HStack {
-                    Image(systemName: "info.bubble.fill")
-                        .font(.system(size: 16))
-                    Text("Detalhes")
-                        .font(.custom("SF Pro Rounded", size: 16))
-                        .fontWeight(.semibold)
-                }.frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.bordered)
-            .foregroundColor(.white)
-            .tint(.purple)
-        }
-    }
-}
+//struct PuzzleButtonView: View {
+//    let title: String
+//    let imageName: String
+//    let isLocked: Bool
+//
+//    let constelationName: String // c 1
+//
+//    @GestureState private var isPressing = false
+//
+//    var body: some View {
+//        VStack(spacing: 10) {
+//            Text(title)
+//                .foregroundColor(.white)
+//
+//            NavigationLink(destination: PuzzleSceneView()) {
+//                Image(imageName)
+//                    .renderingMode(.original)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 150, height: 150)
+//                    .cornerRadius(25)
+//                    .overlay(
+//                        Image(isLocked ? "lock" : "star")
+//                            .resizable()
+//                            .frame(width: 75, height: 75)
+//                            .opacity(isPressing ? 0 : 1)
+//                    )
+//            }
+//            .disabled(isLocked)
+//            .simultaneousGesture(
+//                LongPressGesture(minimumDuration: 1)
+//                    .updating($isPressing) { value, state, transaction in
+//                        state = value
+//                    }
+//            )
+//            .buttonStyle(.plain)
+//
+//            NavigationLink(destination: ConstellationDetailsView(constellationName: constelationName)) {
+//                HStack {
+//                    Image(systemName: "info.bubble.fill")
+//                        .font(.system(size: 16))
+//                    Text("Detalhes")
+//                        .font(.custom("SF Pro Rounded", size: 16))
+//                        .fontWeight(.semibold)
+//                }.frame(maxWidth: .infinity)
+//            }
+//            .buttonStyle(.bordered)
+//            .foregroundColor(.white)
+//            .tint(.purple)
+//        }
+//    }
+//}
 
 struct SliderView: View {
     @Binding var volume: Float

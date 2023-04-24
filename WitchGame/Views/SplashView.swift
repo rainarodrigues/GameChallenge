@@ -19,7 +19,7 @@ struct SplashView: View {
     var body: some View {
         ZStack() {
             if self.isActive {
-                MenuGameView()
+                MenuGameView(isLocked: false)
             } else {
                 LottieBackground(lottieName: "starsbg")
                     .ignoresSafeArea(.all)
