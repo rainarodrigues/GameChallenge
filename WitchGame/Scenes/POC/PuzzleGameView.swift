@@ -1,22 +1,22 @@
+////
+////  PuzzleGameView.swift
+////  WitchGame
+////
+////  Created by Daniele Cavalcante on 02/04/23.
+////
 //
-//  PuzzleGameView.swift
-//  WitchGame
+//import SwiftUI
+//import SpriteKit
 //
-//  Created by Daniele Cavalcante on 02/04/23.
-//
-
-import SwiftUI
-import SpriteKit
-
 //struct PuzzleGameView: View {
 //    var scene: SKScene {
 //        let scene = GameScene()
 //        scene.size = CGSize(width: 400, height: 400)
 //        scene.scaleMode = .fill
-//
+//        
 //        return scene
 //    }
-//
+//    
 //    var body: some View {
 //        SpriteView(scene: scene)
 //            .frame(width: 600, height: 300)
