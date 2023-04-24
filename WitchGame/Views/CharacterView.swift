@@ -14,9 +14,9 @@ struct CharacterView: View {
             LottieBackground(lottieName: "starsbg")
                 .ignoresSafeArea(.all)
             HStack {
-                Image("witch")
+                Image("Witch-Body 1")
                     .resizable()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 300, height: 345.07)
                     .scaledToFit()
             }
         }
