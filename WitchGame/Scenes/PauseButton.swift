@@ -9,9 +9,6 @@ import SpriteKit
 
 class PauseButton: SKSpriteNode {
     
-//    let pauseImage: SKTexture
-//    let playImage: SKTexture
-    
     enum TimerState {
         case paused
         case running
