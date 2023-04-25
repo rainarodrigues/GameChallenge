@@ -15,7 +15,7 @@ struct ConstellationDetailsView: View {
     let details: ConstellationDetailsModel
     
     var body: some View {
-        ZStack{
+        ZStack(alignment: .top) {
 
             LottieBackground(lottieName: "starsbg")
             .ignoresSafeArea(.all)
@@ -60,6 +60,8 @@ struct ConstellationDetailsView: View {
                             .padding(.trailing, 20)
                     }
                 })
+                .padding(.top, 25)
+
                 HStack {
                     Image(details.constellationImage)
                         .resizable()
@@ -83,7 +85,9 @@ struct ConstellationDetailsView: View {
 
                 }
             }
-        }.ignoresSafeArea(.all)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.all)
     }
 }
 

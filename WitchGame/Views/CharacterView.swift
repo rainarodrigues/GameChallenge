@@ -9,18 +9,124 @@ import SwiftUI
 import Lottie
 
 struct CharacterView: View {
+
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
-        ZStack {
+        
+        ZStack(alignment: .top) {
+
             LottieBackground(lottieName: "starsbg")
                 .ignoresSafeArea(.all)
-            HStack {
-                Image("Witch-Body 1")
-                    .resizable()
-                    .frame(width: 300, height: 345.07)
-                    .scaledToFit()
+
+                .navigationBarHidden(true)
+            
+            VStack {
+                CustomNavBar(left: {
+                    Button {
+                        dismiss()
+                    } label: {
+                        ZStack {
+                            Image("navButtonBackground")
+                                .resizable()
+                                .frame(width: 139, height: 42)
+                            HStack {
+                                Image(systemName: "chevron.backward")
+                                    .font(.custom("SF Pro Rounded", size: 15))
+                                    .foregroundColor(.purple)
+                                    .fontWeight(.regular)
+                                Text("Menu")
+                                    .font(.custom("SF Pro Rounded", size: 15))
+                                    .foregroundColor(.purple)
+                                    .fontWeight(.regular)
+                            }
+                        }
+                    }
+                }, center: {
+                    Text("Minhas conquistas")
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .fontWeight(.bold)
+                }, right: {
+                    // Nothing goes on the right side of the NavBar on this View
+                })
+                .padding(.top, 25)
+
+                HStack {
+
+                    Image("Witch-Body 1")
+                        .resizable()
+                        .frame(width: 250, height: 287.56)
+                        .scaledToFit()
+                        .shadow(color: Color.purple, radius: 0.5)
+
+                    HStack {
+
+                        VStack {
+
+                            Text("Prêmio 1: Maracá")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Image("award1")
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(20)
+                            Button {
+                                // code
+                            } label: {
+                                HStack {
+                                    Image(systemName: "wand.and.stars")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.white)
+                                    Text("Equipar")
+                                        .font(.custom("SF Pro Rounded", size: 16))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.semibold)
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                            .background(.indigo)
+                            .cornerRadius(10)
+                        }
+
+                        VStack(alignment: .center) {
+                            Text("Prêmio 2: Flauta Siku")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding(.leading, 20)
+                            Image("award2")
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(20)
+                                .padding(.leading, 20)
+                            Button {
+                                // code
+                            } label: {
+                                HStack {
+                                    Image(systemName: "wand.and.stars")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.white)
+                                    Text("Equipar")
+                                        .font(.custom("SF Pro Rounded", size: 16))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.semibold)
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                            .background(.gray)
+                            .cornerRadius(10)
+                        }
+                    }
+                    .padding()
+                    .background(.white.opacity(0.1))
+                    .cornerRadius(18)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.all)
     }
 }
 
