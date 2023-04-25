@@ -191,18 +191,17 @@ class PuzzleScene: SKScene {
     
     func setupButtonPause(){
 
-        buttonPause = PauseButton(imageNamed: "icon-pause")
+        buttonPause = PauseButton()
         
         buttonPause.position = CGPoint(x: frame.midX, y: frame.midY)
         buttonPause.position = CGPoint(x: progressBar.position.x + 50, y: progressBar.position.y + 180)
+        
+        
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
 
-            // Aqui deve chamar o método para pausar o jogo
             switch timeState {
             case .paused:
-                self.buttonPause.color = .green // TODO: trocar imagem (texture)
-                //troca imagem para play
                 self.label.removeAction(forKey: "progressBarAction")
             case .running:
                 self.label.run(.repeat(
@@ -220,8 +219,6 @@ class PuzzleScene: SKScene {
                     ]),
                     count: 10
                 ), withKey: "progressBarAction")
-                self.buttonPause.color = .red // TODO: trocar imagem (texture)
-                //troca imagem para pausado
             }
             
         }
