@@ -27,7 +27,7 @@ struct SplashView: View {
                     Image("WitchFlyingStatic")
                         .resizable()
                         .frame(width: 220, height: 219.15)
-// Podemos ter um efeito de cambalhota se descomentarmos a linha seguinte
+// We can have a flipping in the air effect if the line below is uncommented
 //                        .rotationEffect(.degrees(rotation))
 //                        .scaleEffect(CGFloat(scaleXY))
                         .offset(x: CGFloat(positionX))
@@ -44,7 +44,7 @@ struct SplashView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {
                     self.isActive = true
                 }

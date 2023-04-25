@@ -26,14 +26,13 @@ struct MenuGameView: View {
     let isLocked2: [Bool] = [false, true, true, true]
     @GestureState private var isPressing = false
 
-    // Respect 266 characters maximum for the constellationDetails:
     @State var constellationDetailsModel: [ConstellationDetailsModel] = [
         ConstellationDetailsModel(
             id: 1,
             constellationName: "A Ema",
             constellationImage: "Constellation1Reveal",
             animalImage: "Constellation1Puzzle",
-            constellationDetails: "Esta constelação retrata uma Ema capaz de devorar estrelas. Duas estrelas da constelação da Mosca representam o bico da ave, que está tentando comer dois ovos. Duas outras estrelas da constelação de Centauro simbolizam ovos que a Ema acabou de engolir. O Cruzeiro do Sul está acima de sua cabeça, e representa uma forquilha que impede a Ema de beber as águas do mundo. As manchas da Via Láctea representam sua plumagem.",
+            constellationDetails: "Esta constelação retrata uma poderosa Ema, capaz de devorar estrelas. Duas estrelas da constelação ocidental da Mosca representam o bico da ave, que está tentando comer dois ovos. Duas outras estrelas da constelação de Centauro simbolizam ovos que a Ema acabou de engolir. O Cruzeiro do Sul está acima de sua cabeça, e representa uma forquilha que impede a Ema de beber as águas do mundo. As manchas da Via Láctea representam sua belíssima plumagem.",
             position: "Limitada pelas constelações de Escorpião, por um lado, e o Cruzeiro do Sul, por outro.",
             season: "Surge no inverno, na segunda quinzena de junho, do lado leste do céu.",
             trivia: "Quando Claude D'Abbeville entrevistou os Tupinambá no Maranhão em 1612, ele batizou a constelação de Avestruz Americana. Mas já que não havia avestruz no Brasil, ela passou a ser chamada de Ema.",
@@ -137,9 +136,9 @@ struct MenuGameView: View {
                                 Image("WitchHead 1")
                                     .resizable()
                                     .frame(width: 80, height: 80)
-//                                    .border(Color.red)
+                                    .shadow(color: Color.purple, radius: 0.5)
                                     .padding(.leading, 15)
-                                Text("Mais sobre mim")
+                                Text("Minhas conquistas")
                                     .font(.custom("SF Pro Rounded", size: 11))
                                     .foregroundColor(.white)
                                     .fontWeight(.regular)
@@ -196,9 +195,6 @@ struct MenuGameView: View {
                                     constellationDetailsViewButton(model: model)
                                 }
                             }
-//                            ForEach(1...4, id: \.self) { index in
-//                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1, constelationName: "Fase \(index)")
-//                                    .font(.custom("SF Pro Rounded", size: 21))
 
                         }
                         .padding(.leading, 20)
@@ -238,61 +234,9 @@ struct CustomNavBar<Left, Center, Right>: View where Left: View, Center: View, R
                 right()
             }
         }
+//        .border(.red)
     }
 }
-
-//struct PuzzleButtonView: View {
-//    let title: String
-//    let imageName: String
-//    let isLocked: Bool
-//
-//    let constelationName: String // c 1
-//
-//    @GestureState private var isPressing = false
-//
-//    var body: some View {
-//        VStack(spacing: 10) {
-//            Text(title)
-//                .foregroundColor(.white)
-//
-//            NavigationLink(destination: PuzzleSceneView()) {
-//                Image(imageName)
-//                    .renderingMode(.original)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 150, height: 150)
-//                    .cornerRadius(25)
-//                    .overlay(
-//                        Image(isLocked ? "lock" : "star")
-//                            .resizable()
-//                            .frame(width: 75, height: 75)
-//                            .opacity(isPressing ? 0 : 1)
-//                    )
-//            }
-//            .disabled(isLocked)
-//            .simultaneousGesture(
-//                LongPressGesture(minimumDuration: 1)
-//                    .updating($isPressing) { value, state, transaction in
-//                        state = value
-//                    }
-//            )
-//            .buttonStyle(.plain)
-//
-//            NavigationLink(destination: ConstellationDetailsView(constellationName: constelationName)) {
-//                HStack {
-//                    Image(systemName: "info.bubble.fill")
-//                        .font(.system(size: 16))
-//                    Text("Detalhes")
-//                        .font(.custom("SF Pro Rounded", size: 16))
-//                        .fontWeight(.semibold)
-//                }.frame(maxWidth: .infinity)
-//            }
-//            .buttonStyle(.bordered)
-//            .foregroundColor(.white)
-//            .tint(.purple)
-//        }
-//    }
-//}
 
 struct SliderView: View {
     @Binding var volume: Float
