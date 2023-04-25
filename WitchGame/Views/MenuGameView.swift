@@ -69,7 +69,7 @@ struct MenuGameView: View {
             constellationName: "O Homem Velho",
             constellationImage: "Constellation4Reveal",
             animalImage: "Constellation1Puzzle",
-            constellationDetails: "A constelação do Homem Velho representa um homem cuja esposa passou a se interessar pelo seu irmão mais novo. Para ficar com o cunhado, a esposa tentou matar o marido, cortando-lhe a perna. Então os deuses ficaram com pena do marido e o transformaram em constelação.",
+            constellationDetails: "A constelação do Homem Velho representa um homem cuja esposa passou a se interessar pelo seu irmão mais novo. Para ficar com o cunhado, a esposa tentou matar o marido, cortando-lhe a perna. Então os deuses ficaram com pena do marido e o transformaram em constelação. O Homem Velho indica o início do verão para os índios do sul do Brasil e o início da estação chuvosa para os índios do norte.",
             position: "Limitada pelas constelações ocidentais de Touro e Órion.",
             season: "Aparece no Verão. Surge na segunda quinzena de dezembro, no lado leste.",
             trivia: "Indica o início do verão para os índios do sul do Brasil e o início da estação chuvosa para os índios do norte do Brasil. É composta por outras constelações indígenas: Eixu (as Pleiades), Tapi'i rainhyakã (as Hyades, incluindo Aldebaran) e Joykexo (O Cinturão de Orion).",

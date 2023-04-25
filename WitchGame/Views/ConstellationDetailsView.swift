@@ -31,38 +31,33 @@ struct ConstellationDetailsView: View {
                             Image("navButtonBackground")
                                 .resizable()
                                 .frame(width: 139, height: 42)
-//                                .padding(.leading, 15)
                             HStack {
                                 Image(systemName: "chevron.backward")
                                     .font(.custom("SF Pro Rounded", size: 15))
                                     .foregroundColor(.purple)
                                     .fontWeight(.regular)
-//                                    .padding(.top, -5)
                                 Text("Menu")
                                     .font(.custom("SF Pro Rounded", size: 15))
                                     .foregroundColor(.purple)
                                     .fontWeight(.regular)
-//                                    .padding(.top, -5)
-    //                                .padding(.leading, 15)
                             }
                         }
                     }
                 }, center: {
                     Text("Constelação \(details.id):  " + details.constellationName)
                         .foregroundColor(.white)
-                        .font(.custom("SF Pro Rounded", size: 28))
-                        .fontWeight(.heavy) // Why doesn't this do anything?
+                        .font(.title)
+                        .fontWeight(.bold)
                 }, right: {
                     HStack {
                         Image("medal")
                             .resizable()
                             .frame(width: 50, height: 50)
-//                            .padding(.trailing, 15)
                         Text("Recorde: \(details.record)")
                             .font(.custom("SF Pro Rounded", size: 17))
                             .foregroundColor(.yellow)
                             .fontWeight(.regular)
-
+                            .padding(.trailing, 20)
                     }
                 })
                 HStack {
@@ -70,6 +65,7 @@ struct ConstellationDetailsView: View {
                         .resizable()
                         .frame(width: 250, height: 250)
                         .cornerRadius(20)
+                        .padding(.leading, 60)
                     VStack(spacing: 10) {
                         Text(details.constellationDetails)
                             .font(.custom("SF Pro Rounded", size: 17))
@@ -83,6 +79,7 @@ struct ConstellationDetailsView: View {
                     }.padding()
                         .background(.purple.opacity(0.1))
                         .cornerRadius(18)
+                        .padding(.trailing, 20)
 
                 }
             }
@@ -92,7 +89,7 @@ struct ConstellationDetailsView: View {
 
 //struct ConstellationDetailsView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ConstellationDetailsView(details: constellationDetailsModel)
+//        ConstellationDetailsView(details: ConstellationDetailsModel())
 //            .previewInterfaceOrientation(.landscapeRight)
 //    }
 //}
