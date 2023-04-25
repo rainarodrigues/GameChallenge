@@ -9,28 +9,34 @@ import SwiftUI
 import Lottie
 
 struct ConstellationDetailsView: View {
-
-    let constellationName: String // c 1
-//    let constellationName: String
-//    let constellationImage: String
-//    let animalImage: String
-//    let constellationDetails: String
-//    let position: String
-//    let season: String
-//    let trivia: String
-//    let record: Int
-
+    
+    let details: ConstellationDetailsModel
+    
     var body: some View {
-
-        VStack {
-            Text(constellationName)
+        ZStack{
+            LottieBackground(lottieName: "starsbg")
+            .ignoresSafeArea(.all)
+            HStack {
+                Image(details.constellationImage)
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .cornerRadius(20)
+                VStack(spacing: 10) {
+                    Text(details.constellationName)
+                        .foregroundColor(.white)
+                        .font(.title)
+                    Text(details.constellationDetails)
+                        .lineLimit(nil)
+                        .foregroundColor(.white)
+                    
+                }.padding()
+                    .background(.purple.opacity(0.1))
+                    .cornerRadius(18)
+                
+            }
         }
     }
 }
 
-struct ConstellationDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ConstellationDetailsView(constellationName: "Orion")
-            .previewInterfaceOrientation(.landscapeRight)
-    }
-}
+    
+

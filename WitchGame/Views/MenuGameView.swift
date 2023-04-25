@@ -77,7 +77,7 @@ struct MenuGameView: View {
     ]
 
     func constellationDetailsViewButton(model: ConstellationDetailsModel) -> some View {
-        NavigationLink(destination: ConstellationDetailsView(constellationName: model.constellationName)) {
+        NavigationLink(destination: ConstellationDetailsView(details: model)) {
             HStack {
                 Image(systemName: "info.bubble.fill")
                     .font(.system(size: 16))
