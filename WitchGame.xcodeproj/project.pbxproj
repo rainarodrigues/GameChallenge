@@ -14,7 +14,6 @@
 		3541586629D9D3B30049021F /* PuzzleSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541586529D9D3B30049021F /* PuzzleSceneView.swift */; };
 		3541586829D9E3460049021F /* clickselect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3541586729D9E3460049021F /* clickselect.mp3 */; };
 		3541586A29D9E4390049021F /* drop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3541586929D9E4390049021F /* drop.mp3 */; };
-		3541586C29D9E4F70049021F /* TimeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541586B29D9E4F70049021F /* TimeBar.swift */; };
 		3541587129DA192C0049021F /* MenuViewOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541587029DA192C0049021F /* MenuViewOptional.swift */; };
 		35592C7029D8A17F00F171B2 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35592C6F29D8A17F00F171B2 /* PlaySound.swift */; };
 		35592C7229D8A4EE00F171B2 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35592C7129D8A4EE00F171B2 /* music.mp3 */; };
@@ -44,7 +43,6 @@
 		3541586529D9D3B30049021F /* PuzzleSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleSceneView.swift; sourceTree = "<group>"; };
 		3541586729D9E3460049021F /* clickselect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickselect.mp3; sourceTree = "<group>"; };
 		3541586929D9E4390049021F /* drop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drop.mp3; sourceTree = "<group>"; };
-		3541586B29D9E4F70049021F /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
 		3541587029DA192C0049021F /* MenuViewOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewOptional.swift; sourceTree = "<group>"; };
 		35592C6F29D8A17F00F171B2 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		35592C7129D8A4EE00F171B2 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				3541586F29D9F3770049021F /* POC */,
 				3541586329D9CE390049021F /* PuzzleScene.swift */,
 				3541586529D9D3B30049021F /* PuzzleSceneView.swift */,
-				3541586B29D9E4F70049021F /* TimeBar.swift */,
 				B2C8219529DCB42C0082F433 /* ProgressBar.swift */,
 				B29BCEBD29E593340073547D /* PauseButton.swift */,
 			);
@@ -260,13 +257,10 @@
 			files = (
 				3582BE6229D7161800411A4F /* MenuGameView.swift in Sources */,
 				35592C7029D8A17F00F171B2 /* PlaySound.swift in Sources */,
-				3541586C29D9E4F70049021F /* TimeBar.swift in Sources */,
 				3541587129DA192C0049021F /* MenuViewOptional.swift in Sources */,
 				B29BCEBE29E593340073547D /* PauseButton.swift in Sources */,
-
 				1D51C50A29F1F617006B809C /* ConstellationDetailsModel.swift in Sources */,
 				1D51C50829F188BC006B809C /* ConstellationDetailsView.swift in Sources */,
-
 				3582BE6F29D717A200411A4F /* MenuView.swift in Sources */,
 				35CA6DFE29D7DDD30049819E /* CharacterView.swift in Sources */,
 				3541586429D9CE390049021F /* PuzzleScene.swift in Sources */,

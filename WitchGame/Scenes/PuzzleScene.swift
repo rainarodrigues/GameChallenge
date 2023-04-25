@@ -24,12 +24,6 @@ class PuzzleScene: SKScene {
     var scrollView: UIScrollView!
     
     var buttonPause: PauseButton!
-//    let buttonPause: SKSpriteNode = SKSpriteNode(
-//        color: .brown,
-//        size: CGSize(width: 50, height: 50)
-//    )
-    //    let buttonPause = PauseButton(imageNamed: "icon-pause")
-    //    let buttonPause = PauseButton(imageNamed: "icon-play")
     
     var gameStarted: Bool = false
     
@@ -81,14 +75,11 @@ class PuzzleScene: SKScene {
         let margin: CGFloat = 50
         let padding: CGFloat = 10
         let size = CGSize(width: 50, height: 50)
-        //        let startX = (view!.bounds.width - (size.width * 3 + padding * 2 + margin)) / 2 + size.width / 2 + margin
-        //        let startY = (view!.bounds.height - (size.height * 3 + padding * 2 + margin)) / 2 + size.height / 2 + margin
         
         for i in 0..<3 {
             for j in 0..<3 {
                 let placeholder = SKSpriteNode(color: .gray, size: size)
-                // placeholder.position = CGPoint(x: startX + CGFloat(i % 3) * (size.width + padding),
-                // y: startY - CGFloat(i / 3) * (size.height + padding))
+    
                 placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
                 addChild(placeholder)
                 placeholders.append(placeholder)
@@ -199,19 +190,18 @@ class PuzzleScene: SKScene {
     }
     
     func setupButtonPause(){
-//        self.addChild(buttonPause)
-//        buttonPause.position = CGPoint(x: progressBar.position.x + 90, y: progressBar.position.y + 180)
-        buttonPause = PauseButton(imageNamed: "icon-pause")
+
+        buttonPause = PauseButton()
+        
         buttonPause.position = CGPoint(x: frame.midX, y: frame.midY)
         buttonPause.position = CGPoint(x: progressBar.position.x + 50, y: progressBar.position.y + 180)
+        
+        
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
 
-            // Aqui deve chamar o método para pausar o jogo
             switch timeState {
             case .paused:
-                self.buttonPause.color = .green // TODO: trocar imagem (texture)
-                //troca imagem para play
                 self.label.removeAction(forKey: "progressBarAction")
             case .running:
                 self.label.run(.repeat(
@@ -229,8 +219,6 @@ class PuzzleScene: SKScene {
                     ]),
                     count: 10
                 ), withKey: "progressBarAction")
-                self.buttonPause.color = .red // TODO: trocar imagem (texture)
-                //troca imagem para pausado
             }
             
         }
@@ -240,34 +228,9 @@ class PuzzleScene: SKScene {
     override func didChangeSize(_ oldSize: CGSize) {
         super.didChangeSize(oldSize)
         
-//        let buttonPause = PauseButton(imageNamed: "icon-pause")
-//        buttonPause.position = CGPoint(x: frame.midX, y: frame.midY)
-//        buttonPause.position = CGPoint(x: progressBar.position.x + 50, y: progressBar.position.y + 180)
-//        buttonPause.action = {
-//            // Aqui deve chamar o método para pausar o jogo
-//        }
-//        addChild(buttonPause)
-        //        buttonPause.position = CGPoint(x: progressBar.position.x + 90, y: progressBar.position.y + 180)
     }
     
     
     
 }
 
-// TODO: Estudar
-//class A {
-//
-//    let global: String = "global"
-//
-//    func a() {
-//
-//        let local = "local"
-//
-//        var action: () -> Void = { // Reference Types x Value Types - ARC
-//            self.global
-//        }
-//
-//        print(global)
-//    }
-//
-//}

@@ -1,13 +1,13 @@
 //
-//  PauseButton.swift
+//  PlayButton.swift
 //  WitchGame
 //
-//  Created by Raina Rodrigues de Lima on 11/04/23.
+//  Created by Raina Rodrigues de Lima on 25/04/23.
 //
 
 import SpriteKit
 
-class PauseButton: SKSpriteNode {
+class PlayButton: SKSpriteNode {
     
     enum TimerState {
         case paused
@@ -17,20 +17,13 @@ class PauseButton: SKSpriteNode {
     var timeState: TimerState = .paused {
         didSet {
             action?(timeState)
-            switch timeState {
-            case .paused:
-                texture = SKTexture(image: UIImage(named: "icon-pause")!)
-            case .running:
-                texture = SKTexture(image: UIImage(named:"botao-play")!)
-            }
         }
     }
     
     var action: ((TimerState) -> Void)?
 
-    init() {
-        let texture = SKTexture(image: UIImage(named: "icon-pause")!)
-    
+    init(imageNamed: String) {
+        let texture = SKTexture(imageNamed: imageNamed)
         super.init(texture: texture, color: .clear, size: texture.size())
 
         isUserInteractionEnabled = true
@@ -41,7 +34,6 @@ class PauseButton: SKSpriteNode {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        timeState = (timeState == .paused) ? .running : .paused
+        timeState = (timeState == .running) ? .running : .paused
     }
-    
 }
