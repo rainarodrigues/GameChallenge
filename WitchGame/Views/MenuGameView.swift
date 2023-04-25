@@ -148,12 +148,12 @@ struct MenuGameView: View {
                     .padding(.top, 10)
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
-                            ForEach(1...4, id: \.self) { index in
-                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1, constelationName: "Fase \(index)")
-                                    .font(.custom("SF Pro Rounded", size: 21))
-
-
-                            }
+//                            ForEach(1...4, id: \.self) { index in
+//                                PuzzleButtonView(title: "Constelação \(index)", imageName: "Constellation1Puzzle", isLocked: index != 1, constelationName: "Fase \(index)")
+//                                    .font(.custom("SF Pro Rounded", size: 21))
+//
+//
+//                            }
                         }
                         .padding(.leading, 20)
                     }
@@ -195,58 +195,58 @@ struct CustomNavBar<Left, Center, Right>: View where Left: View, Center: View, R
     }
 }
 
-struct PuzzleButtonView: View {
-    let title: String
-    let imageName: String
-    let isLocked: Bool
-
-    let constelationName: String // c 1
-
-    @GestureState private var isPressing = false
-
-    var body: some View {
-        VStack(spacing: 10) {
-            Text(title)
-                .foregroundColor(.white)
-            
-            NavigationLink(destination: PuzzleSceneView()) {
-                Image(imageName)
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150, height: 150)
-                    .cornerRadius(25)
-                    .overlay(
-                        Image(isLocked ? "lock" : "star")
-                            .resizable()
-                            .frame(width: 75, height: 75)
-                            .opacity(isPressing ? 0 : 1)
-                    )
-            }
-            .disabled(isLocked)
-            .simultaneousGesture(
-                LongPressGesture(minimumDuration: 1)
-                    .updating($isPressing) { value, state, transaction in
-                        state = value
-                    }
-            )
-            .buttonStyle(.plain)
-
-            NavigationLink(destination: ConstellationDetailsView(constellationName: constelationName)) {
-                HStack {
-                    Image(systemName: "info.bubble.fill")
-                        .font(.system(size: 16))
-                    Text("Detalhes")
-                        .font(.custom("SF Pro Rounded", size: 16))
-                        .fontWeight(.semibold)
-                }.frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.bordered)
-            .foregroundColor(.white)
-            .tint(.purple)
-        }
-    }
-}
+//struct PuzzleButtonView: View {
+//    let title: String
+//    let imageName: String
+//    let isLocked: Bool
+//
+//    let constelationName: String // c 1
+//
+//    @GestureState private var isPressing = false
+//
+//    var body: some View {
+//        VStack(spacing: 10) {
+//            Text(title)
+//                .foregroundColor(.white)
+//            
+//            NavigationLink(destination: PuzzleSceneView()) {
+//                Image(imageName)
+//                    .renderingMode(.original)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 150, height: 150)
+//                    .cornerRadius(25)
+//                    .overlay(
+//                        Image(isLocked ? "lock" : "star")
+//                            .resizable()
+//                            .frame(width: 75, height: 75)
+//                            .opacity(isPressing ? 0 : 1)
+//                    )
+//            }
+//            .disabled(isLocked)
+//            .simultaneousGesture(
+//                LongPressGesture(minimumDuration: 1)
+//                    .updating($isPressing) { value, state, transaction in
+//                        state = value
+//                    }
+//            )
+//            .buttonStyle(.plain)
+//
+//            NavigationLink(destination: ConstellationDetailsView(details: constelationName)) {
+//                HStack {
+//                    Image(systemName: "info.bubble.fill")
+//                        .font(.system(size: 16))
+//                    Text("Detalhes")
+//                        .font(.custom("SF Pro Rounded", size: 16))
+//                        .fontWeight(.semibold)
+//                }.frame(maxWidth: .infinity)
+//            }
+//            .buttonStyle(.bordered)
+//            .foregroundColor(.white)
+//            .tint(.purple)
+//        }
+//    }
+//}
 
 struct SliderView: View {
     @Binding var volume: Float
