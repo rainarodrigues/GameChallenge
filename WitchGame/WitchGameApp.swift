@@ -14,7 +14,6 @@ struct WitchGameApp: App {
             SplashView()
 //            PuzzleGameView()
 //            PuzzleSceneView()
-//            PuzzleSceneView()
 //            MenuViewOptional()
         }
     }

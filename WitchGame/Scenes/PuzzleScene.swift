@@ -42,7 +42,7 @@ class PuzzleScene: SKScene {
     
     // MARK: - Time 10-9
     let label = SKLabelNode(text: "")
-    let timeMax: CGFloat = 10.0
+    let timeMax: CGFloat = 30.0
     lazy var timeNow = self.timeMax
     
     // MARK: - View Lifecycle
@@ -238,11 +238,11 @@ class PuzzleScene: SKScene {
     }
     
     func setupTimeProgressBar(){
-        label.fontSize = 40
-        label.fontName = "Helvetica"
+        label.fontSize = 20
+        label.fontName = "SF Pro Rounded"
         label.position = CGPoint(
             x: self.frame.minX * 0.9,
-            y: self.frame.minY * 0.8)
+            y: self.frame.minY * 0.95)
         self.addChild(label)
     }
     func setupButtonPause(){
@@ -267,7 +267,7 @@ class PuzzleScene: SKScene {
                         },
                         .wait(forDuration: 1)
                     ]),
-                    count: 10
+                    count: 30
                 ), withKey: "progressBarAction")
             }
         }
