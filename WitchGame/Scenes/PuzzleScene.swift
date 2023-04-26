@@ -53,7 +53,7 @@ class PuzzleScene: SKScene {
     
     // MARK: - Setup Methods
     private func setupScene() {
-        backgroundColor = .black
+        backgroundColor = UIColor(red: 0.25882, green: 0.15294, blue: 0.44314, alpha: 1)
     }
     
     private func setupPieces() {
@@ -190,12 +190,8 @@ class PuzzleScene: SKScene {
     }
     
     func setupButtonPause(){
-
         buttonPause = PauseButton()
-        
-        buttonPause.position = CGPoint(x: frame.midX, y: frame.midY)
-        buttonPause.position = CGPoint(x: progressBar.position.x + 50, y: progressBar.position.y + 180)
-        
+        buttonPause.position = CGPoint(x: frame.maxX - 34, y: frame.maxY - 28)
         
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
