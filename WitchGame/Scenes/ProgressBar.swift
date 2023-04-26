@@ -11,7 +11,7 @@ class ProgressBar: SKSpriteNode {
     
     // Tamanhos das barras
     var width: CGFloat = 0.05
-    var totalHeight: CGFloat = 0.5
+    var totalHeight: CGFloat = 0.7
     
     lazy var progressHeight: CGFloat = totalHeight {
         didSet {
