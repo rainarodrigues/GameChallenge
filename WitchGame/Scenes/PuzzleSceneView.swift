@@ -10,7 +10,7 @@ import SpriteKit
 
 struct PuzzleSceneView: View {
     @State private var gameStarted = false
-    
+    // teste
     var body: some View {
         GeometryReader { geo in
             LottieBackground(lottieName: "starsbg")
