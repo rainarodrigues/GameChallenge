@@ -9,9 +9,11 @@ import SwiftUI
 import SpriteKit
 
 struct PuzzleView: View {
+    
+    
     var body: some View {
         ZStack() {
-            LottieBackground(lottieName: "starsbg")
+           Color(red: 0.25882, green: 0.15294, blue: 0.44314)
                 .ignoresSafeArea(.all)
             GeometryReader { geo in
                 ZStack {
