@@ -18,6 +18,7 @@ class PuzzleScene: SKScene {
     var pieceMovedInitialPosition: CGPoint?
     //var correctPositions: [CGPoint] = []
     var correctPositions: [SKSpriteNode] = []
+    var finalPositions: [SKSpriteNode] = []
     //var filledPlaceholders: [CGPoint] = []
     var count: Int = 0
     
@@ -26,6 +27,14 @@ class PuzzleScene: SKScene {
     var buttonPause: PauseButton!
     
     var gameStarted: Bool = false
+    
+    
+    
+    let imagesPositions = [(UIImage(named: "Constellation1-0"), CGPoint(x: 0, y: 0)), (UIImage(named: "Constellation1-1"), CGPoint(x: 0, y: 1)), (UIImage(named: "Constellation1-2"), CGPoint(x: 0, y: 2)), (UIImage(named: "Constellation1-3"), CGPoint(x: 1, y: 0)), (UIImage(named: "Constellation1-4"), CGPoint(x: 1, y: 1)), (UIImage(named: "Constellation1-5"), CGPoint(x: 1, y: 2)), (UIImage(named: "Constellation1-6"), CGPoint(x: 2, y: 0)), (UIImage(named: "Constellation1-7"), CGPoint(x: 2, y: 1)), (UIImage(named: "Constellation1-8"), CGPoint(x: 2, y: 2))]
+    
+    let images = [UIImage(named: "Constellation1-0"), UIImage(named: "Constellation1-1"), UIImage(named: "Constellation1-2"), UIImage(named: "Constellation1-3"), UIImage(named: "Constellation1-4"), UIImage(named: "Constellation1-5"), UIImage(named: "Constellation1-6"), UIImage(named: "Constellation1-7"), UIImage(named: "Constellation1-8")]
+
+
     
     // MARK: - ProgressBar
     var progressBar: ProgressBar = ProgressBar()
@@ -47,8 +56,12 @@ class PuzzleScene: SKScene {
         setupTimeProgressBar()
         
         setupScene()
-        setupPlaceholders()
-        setupPieces()
+        
+//        setupPlaceholders()
+//        setupPieces()
+        
+        setupNewPlaceholders()
+        setupNewPieces()
     }
     
     // MARK: - Setup Methods
@@ -59,7 +72,6 @@ class PuzzleScene: SKScene {
     private func setupPieces() {
         let piecePositions = [(80, [0,1,2]), (130, [3,4,5]), (160, [6,7,8])]
         let pieceSize = CGSize(width: 50, height: 50)
-        
         for (x, nums) in piecePositions {
             for num in nums {
                 let piece = SKSpriteNode(imageNamed: "Constellation1-\(num)") //constelation1-\(num)
@@ -71,21 +83,69 @@ class PuzzleScene: SKScene {
         }
     }
     
-    private func setupPlaceholders() {
-        let margin: CGFloat = 50
-        let padding: CGFloat = 10
-        let size = CGSize(width: 50, height: 50)
+    private func setupNewPieces() {
+        let newPiecesPositions = [(115, [0,80]), (75, [0,80]), (25, [0,80]), (-35, [0,80]), (-85, [0])]
+        let newPiecesSize = CGSize(width: 70, height: 70)
+        let pieceImages = images
+        let shuffledPieceImages = pieceImages //.shuffled() // Shuffle the array of images
+        var i = 0
         
+        let piecesPos = [CGPoint(x: 240, y: 115),CGPoint(x: 320, y: 115),CGPoint(x: 240, y: 35),CGPoint(x: 320, y: 35),CGPoint(x: 240, y: -45),CGPoint(x: 320, y: -45),CGPoint(x: 160, y: -45),CGPoint(x: 160, y: 115),CGPoint(x: 160, y: 35)].shuffled()
+
+        for (_, xs) in newPiecesPositions {
+            for _ in xs {
+                let image = shuffledPieceImages[i]
+                let piece2 = createPiece(image: image, size: newPiecesSize, position: piecesPos[i])
+                addChild(piece2)
+                pieces.append(piece2)
+                i += 1
+            }
+        }
+    }
+    
+    private func setupPlaceholders() {
+        let size = CGSize(width: 50, height: 50)
         for i in 0..<3 {
             for j in 0..<3 {
                 let placeholder = SKSpriteNode(color: .gray, size: size)
-    
                 placeholder.position = CGPoint(x: -100 + (60 * j), y: 50 - (60*i))
                 addChild(placeholder)
                 placeholders.append(placeholder)
                 correctPositions.append(placeholder)
             }
         }
+    }
+    
+    private func setupNewPlaceholders() {
+        let placeholdersPositions = [(103, [-153,-50,53]), (0, [-153,-50,53]), (-103, [-153,-50,53])]
+        let placeholdersSize = CGSize(width: 100, height: 100)
+        let shuffledImages = images //.shuffled() // Shuffle the array of images
+        var i = 0
+        for (y, xs) in placeholdersPositions {
+            for x in xs {
+                let image = shuffledImages[i]
+                let placeholder = createPlaceholder(image: image, size: placeholdersSize, position: CGPoint(x: x, y: y))
+                addChild(placeholder)
+                placeholders.append(placeholder)
+                correctPositions.append(placeholder)
+                i += 1
+            }
+        }
+    }
+    
+    private func createPlaceholder(image: UIImage?, size: CGSize, position: CGPoint) -> SKSpriteNode {
+        let texture = SKTexture(image: image!)
+        let placeholder = SKSpriteNode(texture: texture, size: size)
+        placeholder.alpha = 0.25
+        placeholder.position = position
+        return placeholder
+    }
+    
+    private func createPiece(image: UIImage?, size: CGSize, position: CGPoint) -> SKSpriteNode {
+        let texture = SKTexture(image: image!)
+        let piece = SKSpriteNode(texture: texture, size: size)
+        piece.position = position
+        return piece
     }
     
     // MARK: - Touch Handling
@@ -98,7 +158,6 @@ class PuzzleScene: SKScene {
             pieceMovedInitialPosition = piece.position
             pieceMoved!.zPosition = 1
             playSelectPiece(filename: "clickselect", fileExtension: "mp3")
-            
         }
         
         // MARK: toque para iniciar o a barra de progresso
@@ -127,26 +186,25 @@ class PuzzleScene: SKScene {
             let correctPosition = correctPositions[id]
             let distance = hypot(piece.position.x - correctPosition.position.x, piece.position.y - correctPosition.position.y)
             print("INFERNO \(distance)")
-            if distance < CGFloat(20.0) {
+            if distance < CGFloat(30.0) {
                 piece.position = correctPosition.position
+                piece.size = CGSize(width: 100, height: 100)
+                piece.zPosition = -1
                 count += 1
-                print("infernoooo")
             } else {
                 piece.position = pieceMovedInitialPosition!
-                print("ceu")
-                
             }
             pieceMoved = nil
             playSelectPiece(filename: "drop", fileExtension: "mp3")
             
             if(count == 9) {
-                print("TERMINOU")
                 // Create an SKSpriteNode for the ball
                 let ball = SKSpriteNode(imageNamed: "witch")
                 
                 // Set the ball's position and size
-                ball.position = CGPoint(x: -50, y:0)
+                ball.position = CGPoint(x: 0, y:0)
                 ball.size = CGSize(width: 100, height: 100)
+                ball.zPosition = 50
                 
                 // Add the ball to the scene
                 addChild(ball)
@@ -162,7 +220,6 @@ class PuzzleScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
-        
         if buttonPause.timeState == .running {
             if progressBar.progressHeight <= 0 {
                 buttonPause.timeState = .paused
@@ -188,14 +245,11 @@ class PuzzleScene: SKScene {
             y: self.frame.minY * 0.8)
         self.addChild(label)
     }
-    
     func setupButtonPause(){
         buttonPause = PauseButton()
-        buttonPause.position = CGPoint(x: frame.maxX - 34, y: frame.maxY - 28)
-        
+        buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 50)
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
-
             switch timeState {
             case .paused:
                 self.label.removeAction(forKey: "progressBarAction")
@@ -216,17 +270,11 @@ class PuzzleScene: SKScene {
                     count: 10
                 ), withKey: "progressBarAction")
             }
-            
         }
         addChild(buttonPause)
     }
     
     override func didChangeSize(_ oldSize: CGSize) {
         super.didChangeSize(oldSize)
-        
     }
-    
-    
-    
 }
-
