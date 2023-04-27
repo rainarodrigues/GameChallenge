@@ -214,21 +214,21 @@ class PuzzleScene: SKScene {
             
             if(count == 9) {
                 // Create an SKSpriteNode for the ball
-                let ball = SKSpriteNode(imageNamed: "witch")
+                let ball = SKSpriteNode(imageNamed: "Constellation1Reveal")
                 
                 // Set the ball's position and size
-                ball.position = CGPoint(x: 0, y:0)
-                ball.size = CGSize(width: 100, height: 100)
+                ball.position = CGPoint(x: -50, y:0)
+                ball.size = CGSize(width: 300, height: 300)
                 ball.zPosition = 50
                 
                 // Add the ball to the scene
                 addChild(ball)
-                
+
                 // Create an SKAction to spin the ball
-                let spin = SKAction.repeatForever(SKAction.rotate(byAngle: .pi, duration: 1.0))
+//                let spin = SKAction.repeatForever(SKAction.rotate(byAngle: .pi, duration: 1.0))
                 
                 // Run the spin action on the ball
-                ball.run(spin)
+//                ball.run(spin)
             }
         }
     }

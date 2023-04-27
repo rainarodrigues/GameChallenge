@@ -24,6 +24,7 @@
 		35592C7D29D92C2700F171B2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35592C7C29D92C2700F171B2 /* SplashView.swift */; };
 		35592C7F29D92F6900F171B2 /* witch-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 35592C7E29D92F6900F171B2 /* witch-animation.json */; };
 		35592C8229D9343400F171B2 /* PuzzleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35592C8129D9343400F171B2 /* PuzzleModel.swift */; };
+		356B7E0B29FA1F220086FA28 /* NextLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B7E0A29FA1F220086FA28 /* NextLevelView.swift */; };
 		3582BE6029D7161800411A4F /* WitchGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582BE5F29D7161800411A4F /* WitchGameApp.swift */; };
 		3582BE6229D7161800411A4F /* MenuGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582BE6129D7161800411A4F /* MenuGameView.swift */; };
 		3582BE6729D7161A00411A4F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3582BE6629D7161A00411A4F /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		35592C7C29D92C2700F171B2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		35592C7E29D92F6900F171B2 /* witch-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "witch-animation.json"; sourceTree = "<group>"; };
 		35592C8129D9343400F171B2 /* PuzzleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleModel.swift; sourceTree = "<group>"; };
+		356B7E0A29FA1F220086FA28 /* NextLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLevelView.swift; sourceTree = "<group>"; };
 		3582BE5C29D7161800411A4F /* WitchGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WitchGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3582BE5F29D7161800411A4F /* WitchGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitchGameApp.swift; sourceTree = "<group>"; };
 		3582BE6129D7161800411A4F /* MenuGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuGameView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				3541586529D9D3B30049021F /* PuzzleSceneView.swift */,
 				B2C8219529DCB42C0082F433 /* ProgressBar.swift */,
 				B29BCEBD29E593340073547D /* PauseButton.swift */,
+				356B7E0A29FA1F220086FA28 /* NextLevelView.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				35592C8229D9343400F171B2 /* PuzzleModel.swift in Sources */,
 				1D48A4C929EB3020008AADE4 /* OnboardingView.swift in Sources */,
 				B2C8219629DCB42C0082F433 /* ProgressBar.swift in Sources */,
+				356B7E0B29FA1F220086FA28 /* NextLevelView.swift in Sources */,
 				3541586629D9D3B30049021F /* PuzzleSceneView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
