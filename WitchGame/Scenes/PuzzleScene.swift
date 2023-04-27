@@ -28,7 +28,8 @@ class PuzzleScene: SKScene {
     
     var gameStarted: Bool = false
     
-    
+    var restartButton: SKSpriteNode!
+
     
     let imagesPositions = [(UIImage(named: "Constellation1-0"), CGPoint(x: 0, y: 0)), (UIImage(named: "Constellation1-1"), CGPoint(x: 0, y: 1)), (UIImage(named: "Constellation1-2"), CGPoint(x: 0, y: 2)), (UIImage(named: "Constellation1-3"), CGPoint(x: 1, y: 0)), (UIImage(named: "Constellation1-4"), CGPoint(x: 1, y: 1)), (UIImage(named: "Constellation1-5"), CGPoint(x: 1, y: 2)), (UIImage(named: "Constellation1-6"), CGPoint(x: 2, y: 0)), (UIImage(named: "Constellation1-7"), CGPoint(x: 2, y: 1)), (UIImage(named: "Constellation1-8"), CGPoint(x: 2, y: 2))]
     
@@ -51,20 +52,30 @@ class PuzzleScene: SKScene {
         self.alpha = 0.5
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+
+        setupRestartButton()
         setupProgressBar()
         setupButtonPause()
         setupTimeProgressBar()
         
         setupScene()
         
-//        setupPlaceholders()
-//        setupPieces()
-        
         setupNewPlaceholders()
         setupNewPieces()
     }
     
+    
+    
     // MARK: - Setup Methods
+    
+    private func setupRestartButton() {
+        // Add restart button
+        restartButton = SKSpriteNode(imageNamed: "restart")
+        restartButton.size = CGSize(width: 35, height: 40)
+        restartButton.position = CGPoint(x: 240, y: -120)
+        addChild(restartButton)
+    }
+    
     private func setupScene() {
         backgroundColor = UIColor(red: 0.25882, green: 0.15294, blue: 0.44314, alpha: 1)
     }
@@ -153,6 +164,10 @@ class PuzzleScene: SKScene {
         var location = touches.first!.location(in: self)
         let node = nodes(at: location).first
         
+        if restartButton.contains(location) {
+            restartScene()
+        }
+        
         if let piece = node as? SKSpriteNode, pieces.contains(piece) {
             pieceMoved = piece
             pieceMovedInitialPosition = piece.position
@@ -228,6 +243,23 @@ class PuzzleScene: SKScene {
         }
     }
     
+    
+    func restartScene() {
+        // Remove all child nodes
+        removeAllChildren()
+        
+        // Re-setup the scene
+        setupRestartButton()
+        setupScene()
+        setupNewPlaceholders()
+        setupNewPieces()
+        
+        // Add progress bar and pause button
+        addChild(progressBar)
+        addChild(buttonPause)
+    }
+    
+    
     func setupProgressBar() {
         addChild(progressBar)
         progressBar.buildProgressBar()
@@ -247,7 +279,7 @@ class PuzzleScene: SKScene {
     }
     func setupButtonPause(){
         buttonPause = PauseButton()
-        buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 50)
+        buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 35)
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
             switch timeState {
