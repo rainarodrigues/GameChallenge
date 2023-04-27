@@ -16,10 +16,8 @@ class PuzzleScene: SKScene {
     var placeholders: [SKSpriteNode] = []
     var pieceMoved: SKSpriteNode?
     var pieceMovedInitialPosition: CGPoint?
-    //var correctPositions: [CGPoint] = []
     var correctPositions: [SKSpriteNode] = []
     var finalPositions: [SKSpriteNode] = []
-    //var filledPlaceholders: [CGPoint] = []
     var count: Int = 0
     
     var scrollView: UIScrollView!
@@ -30,6 +28,7 @@ class PuzzleScene: SKScene {
     
     var restartButton: SKSpriteNode!
     var nextLevelButton: SKSpriteNode!
+    var tryAgainButton: SKSpriteNode!
 
     
     let imagesPositions = [(UIImage(named: "Constellation1-0"), CGPoint(x: 0, y: 0)), (UIImage(named: "Constellation1-1"), CGPoint(x: 0, y: 1)), (UIImage(named: "Constellation1-2"), CGPoint(x: 0, y: 2)), (UIImage(named: "Constellation1-3"), CGPoint(x: 1, y: 0)), (UIImage(named: "Constellation1-4"), CGPoint(x: 1, y: 1)), (UIImage(named: "Constellation1-5"), CGPoint(x: 1, y: 2)), (UIImage(named: "Constellation1-6"), CGPoint(x: 2, y: 0)), (UIImage(named: "Constellation1-7"), CGPoint(x: 2, y: 1)), (UIImage(named: "Constellation1-8"), CGPoint(x: 2, y: 2))]
@@ -79,9 +78,17 @@ class PuzzleScene: SKScene {
     
     private func setupNextLevelButton() {
         nextLevelButton = SKSpriteNode(imageNamed: "next")
-        nextLevelButton.size = CGSize(width: 170, height: 65)
+        nextLevelButton.size = CGSize(width: 170, height: 55)
         nextLevelButton.position = CGPoint(x: 240, y: 0)
         addChild(nextLevelButton)
+    }
+    
+    private func setupTryAgainButton() {
+        tryAgainButton = SKSpriteNode(imageNamed: "try")
+        tryAgainButton.size = CGSize(width: 170, height: 55)
+        tryAgainButton.position = CGPoint(x: 240, y: 0)
+        removeChildren(in: pieces)
+        addChild(tryAgainButton)
     }
     
     private func setupScene() {
@@ -176,6 +183,10 @@ class PuzzleScene: SKScene {
             restartScene()
         }
         
+        if tryAgainButton != nil && tryAgainButton.contains(location) {
+            restartScene()
+        }
+        
         if let piece = node as? SKSpriteNode, pieces.contains(piece) {
             pieceMoved = piece
             pieceMovedInitialPosition = piece.position
@@ -224,6 +235,7 @@ class PuzzleScene: SKScene {
                 // Create an SKSpriteNode for the ball
                 let ball = SKSpriteNode(imageNamed: "Constellation1Reveal")
                 
+                
                 // Set the ball's position and size
                 ball.position = CGPoint(x: -50, y:0)
                 ball.size = CGSize(width: 300, height: 300)
@@ -248,7 +260,7 @@ class PuzzleScene: SKScene {
         if buttonPause.timeState == .running {
             if progressBar.progressHeight <= 0 {
                 buttonPause.timeState = .paused
-                print("Cabou o tempo :(")
+                setupTryAgainButton()
             }
         }
     }
@@ -261,12 +273,17 @@ class PuzzleScene: SKScene {
         // Re-setup the scene
         setupRestartButton()
         setupScene()
+
+        
+        setupProgressBar()
+        setupTimeProgressBar()
+        
         setupNewPlaceholders()
         setupNewPieces()
         
         // Add progress bar and pause button
-        addChild(progressBar)
-        addChild(buttonPause)
+//        addChild(progressBar)
+        //addChild(buttonPause)
     }
     
     
@@ -313,7 +330,7 @@ class PuzzleScene: SKScene {
                 ), withKey: "progressBarAction")
             }
         }
-        addChild(buttonPause)
+        //addChild(buttonPause)
     }
     
     override func didChangeSize(_ oldSize: CGSize) {

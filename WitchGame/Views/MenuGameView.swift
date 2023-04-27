@@ -112,14 +112,7 @@ struct MenuGameView: View {
             }.frame(maxWidth: .infinity)
         }
         .disabled(model.isBlocked)
-//        .simultaneousGesture(
-//            LongPressGesture(minimumDuration: 1)
-//                .updating($isPressing) { value, state, transaction in
-//                    state = value
-//                }
-//        )
         .buttonStyle(.plain)
-        
     }
 
     var body: some View {
@@ -168,11 +161,11 @@ struct MenuGameView: View {
                                     .opacity(0.8)
                                     .font(.system(size: 50))
                                     .padding(.bottom, 10)
-                                Text(self.isPlaying ? "Áudio On" : "Áudio Off")
-                                    .font(.custom("SF Pro Rounded", size: 11))
-                                    .foregroundColor(.white)
-                                    .fontWeight(.regular)
-                                    .padding(.top, -10)
+//                                Text(self.isPlaying ? "Áudio On" : "Áudio Off")
+//                                    .font(.custom("SF Pro Rounded", size: 11))
+//                                    .foregroundColor(.white)
+//                                    .fontWeight(.regular)
+//                                    .padding(.top, -10)
                             }
                         })
                         .buttonStyle(.plain)
@@ -189,12 +182,29 @@ struct MenuGameView: View {
                     .padding(.top, 10)
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 40) {
-                            ForEach(constellationDetailsModel, id: \.id) { model in
-                                VStack{
-                                    puzzleViewButton(model: model)
-                                    constellationDetailsViewButton(model: model)
-                                }
+//                            ForEach(constellationDetailsModel, id: \.id) { model in
+//                                VStack{
+//                                    puzzleViewButton(model: model)
+//                                    constellationDetailsViewButton(model: model)
+//                                }
+//                            }
+                            VStack{
+                                puzzleViewButton(model: constellationDetailsModel[0])
+                                constellationDetailsViewButton(model: constellationDetailsModel[0])
                             }
+                            VStack{
+                                puzzleViewButton(model: constellationDetailsModel[1])
+                                constellationDetailsViewButton(model: constellationDetailsModel[1])
+                            }
+                            VStack{
+                                puzzleViewButton(model: constellationDetailsModel[2])
+                                constellationDetailsViewButton(model: constellationDetailsModel[2])
+                            }
+                            VStack{
+                                puzzleViewButton(model: constellationDetailsModel[3])
+                                constellationDetailsViewButton(model: constellationDetailsModel[3])
+                            }
+                            
 
                         }
                         .padding(.leading, 20)
