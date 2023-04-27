@@ -42,6 +42,19 @@ class PuzzleScene: SKScene {
         self.alpha = 0.5
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+        // MARK: botão menu removido
+//        let button = SKSpriteNode(texture: SKTexture(imageNamed: "MenuScreen"), normalMap: SKTexture(imageNamed: "MenuScreenPression"))
+//
+//        button.size = CGSize(width: 90, height: 50)
+//        button.position = CGPoint(x: self.frame.midX , y: self.frame.midY)
+//        button.anchorPoint = CGPoint(x: 3.9, y: -2.3)
+//
+////        button.addHandler {
+////            print("Botão pressionado!")
+////        }
+//        self.addChild(button)
+        
+        
         setupProgressBar()
         setupButtonPause()
         setupTimeProgressBar()
