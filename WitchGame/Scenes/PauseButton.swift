@@ -31,7 +31,7 @@ class PauseButton: SKSpriteNode {
     init() {
         let texture = SKTexture(image: UIImage(named: "icon-pause")!)
     
-        super.init(texture: texture, color: .clear, size: CGSize(width: 50, height: 50))
+        super.init(texture: texture, color: .clear, size: CGSize(width: 40, height: 40))
 
         isUserInteractionEnabled = true
     }

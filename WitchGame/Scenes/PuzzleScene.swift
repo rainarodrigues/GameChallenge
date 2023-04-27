@@ -260,7 +260,7 @@ class PuzzleScene: SKScene {
     }
     func setupButtonPause(){
         buttonPause = PauseButton()
-        buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 50)
+        buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 37)
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
             switch timeState {
