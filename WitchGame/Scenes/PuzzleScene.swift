@@ -54,6 +54,7 @@ class PuzzleScene: SKScene {
         
 
         setupRestartButton()
+
         setupProgressBar()
         setupButtonPause()
         setupTimeProgressBar()
@@ -307,6 +308,7 @@ class PuzzleScene: SKScene {
     func setupButtonPause(){
         buttonPause = PauseButton()
         buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 35)
+
         buttonPause.action = { [weak self] timeState in
             guard let self else { return }
             switch timeState {
