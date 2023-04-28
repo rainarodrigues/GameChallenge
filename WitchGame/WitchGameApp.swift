@@ -12,10 +12,10 @@ struct WitchGameApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()
-                .persistentSystemOverlays(.hidden)
+//                .persistentSystemOverlays(.hidden)
 //            PuzzleGameView()
 //            PuzzleSceneView()
-//            MenuViewOptional()
+//            MenuView()
         }
     }
 }
