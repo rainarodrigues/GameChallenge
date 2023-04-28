@@ -53,6 +53,7 @@ class PuzzleScene: SKScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
 
+        
         setupRestartButton()
 
         setupProgressBar()
@@ -278,6 +279,7 @@ class PuzzleScene: SKScene {
         
         setupProgressBar()
         setupTimeProgressBar()
+        setupButtonPause()
         
         setupNewPlaceholders()
         setupNewPieces()
@@ -307,6 +309,7 @@ class PuzzleScene: SKScene {
     }
     func setupButtonPause(){
         buttonPause = PauseButton()
+
         buttonPause.position = CGPoint(x: frame.maxX - 695, y: frame.maxY - 35)
 
         buttonPause.action = { [weak self] timeState in
@@ -332,7 +335,7 @@ class PuzzleScene: SKScene {
                 ), withKey: "progressBarAction")
             }
         }
-        //addChild(buttonPause)
+        addChild(buttonPause)
     }
     
     override func didChangeSize(_ oldSize: CGSize) {
